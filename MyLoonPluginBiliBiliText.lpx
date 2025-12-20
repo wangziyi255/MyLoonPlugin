@@ -13,9 +13,12 @@ displayUpList=select, "auto", "show", "hide",tag = [动态]中[最常访问]的�
 purifyComment=switch,"false","true",tag = [评论区]过滤置顶评论广告, desc = true: 开启; false: 关闭;
 optimizeRequest=switch,"false","true",tag =[评论区]优化加载, desc = true: 开启; false: 关闭;
 sponsorBlock=switch,"false","true",tag = [空降助手]跳过视频内插播广告, desc = true: 开启; false: 关闭;
-# 新增：更细分的开关
-enableVideoPage=switch,"false","true",tag = [播放页处理]处理视频播放页接口, desc = true: 处理播放页(可能影响弹幕); false: 不处理播放页;
-enableDmView=switch,"false","true",tag = [弹幕处理]处理弹幕显示接口, desc = true: 处理弹幕(可能影响显示); false: 不处理弹幕;
+# 新增：三个独立的播放页接口开关
+enableView=switch,"false","true",tag = [播放页主接口]处理播放页主接口, desc = true: 处理(可能影响弹幕); false: 不处理;
+enableViewProgress=switch,"false","true",tag = [观看进度接口]处理观看进度, desc = true: 处理; false: 不处理;
+enableRelatesFeed=switch,"false","true",tag = [相关推荐接口]处理相关推荐, desc = true: 处理; false: 不处理;
+# 弹幕接口开关（虽然测试不影响，但保留）
+enableDmView=switch,"false","true",tag = [弹幕处理]处理弹幕显示接口, desc = true: 处理弹幕; false: 不处理弹幕;
 logLevel=select, "error", "warn", "info", "debug", "off",tag = 日志等级, desc = 选择日志输出等级
 
 [Rule]
@@ -59,14 +62,20 @@ http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.commu
 
 http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js, requires-body=true, binary-body-mode=true, timeout=10, tag=[哔哩哔哩]ProtoBuf Request, enable={optimizeRequest}, argument="[{purifyComment},{logLevel}]"
 
-# ProtoBuf处理 - 拆分为三个规则
-# 规则1：视频播放页三个接口处理（View, ViewProgress, RelatesFeed）
-http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view(unite)?\.v1\.View\/(View|ViewProgress|RelatesFeed)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]视频播放页处理, enable={enableVideoPage}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+# ProtoBuf处理 - 拆分为多个独立规则
+# 规则1：播放页主接口（最可能影响弹幕）
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view(unite)?\.v1\.View\/View$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]播放页主接口, enable={enableView}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
-# 规则2：弹幕显示接口处理（单独控制）
+# 规则2：观看进度接口
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view\.v1\.View\/ViewProgress$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]观看进度, enable={enableViewProgress}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+
+# 规则3：相关推荐接口
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view\.v1\.View\/RelatesFeed$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]相关推荐, enable={enableRelatesFeed}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+
+# 规则4：弹幕显示接口（测试显示不影响，但保留开关）
 http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmView$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]弹幕处理, enable={enableDmView}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
-# 规则3：其他接口处理（总是启用，提供去广告等功能）
+# 规则5：其他接口处理（总是启用，提供去广告等功能）
 http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]ProtoBuf其他处理, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
 [MITM]
