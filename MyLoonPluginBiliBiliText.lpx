@@ -49,8 +49,7 @@ AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWOR
 # 移除搜索框关键词
 ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ mock-response-body data-type=text data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE=" mock-data-is-base64=true
 # 移除播放页面广告
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.viewunite\.v1\.View\/ViewEndPage$
-mock-response-body data-type=text data="AAAAAAA=" mock-data-is-base64=true, enable={!iPadViewEndPageMock}
+^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ mock-response-body data-type=text data="AAAAAAA=" mock-data-is-base64=true, enable={iPadViewEndPageMock}
 
 [Script]
 # 空降助手
