@@ -13,8 +13,8 @@ displayUpList=select, "auto", "show", "hide",tag = [动态]中[最常访问]的�
 purifyComment=switch,"false","true",tag = [评论区]过滤置顶评论广告, desc = true: 开启; false: 关闭;
 optimizeRequest=switch,"false","true",tag =[评论区]优化加载, desc = true: 开启; false: 关闭;
 sponsorBlock=switch,"false","true",tag = [空降助手]跳过视频内插播广告, desc = true: 开启; false: 关闭;
-# 修改开关描述，让它更直观
-iPadDmFix=switch,"true","false",tag = [iPad弹幕修复]修复iPad弹幕显示, desc = true: 开启修复(不处理弹幕，弹幕正常); false: 关闭修复(处理弹幕，可能异常);
+# 新增：视频播放页和弹幕处理开关
+enableVideoDm=switch,"false","true",tag = [视频弹幕处理]处理视频和弹幕接口, desc = true: 处理(可能影响iPad弹幕); false: 不处理(修复iPad弹幕);
 logLevel=select, "error", "warn", "info", "debug", "off",tag = 日志等级, desc = 选择日志输出等级
 
 [Rule]
@@ -59,13 +59,13 @@ http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.commu
 http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js, requires-body=true, binary-body-mode=true, timeout=10, tag=[哔哩哔哩]ProtoBuf Request, enable={optimizeRequest}, argument="[{purifyComment},{logLevel}]"
 
 # ProtoBuf处理 - 拆分为两个规则
-# 规则1：处理除弹幕外的所有接口（总是执行）
-http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(unite)?\.v1\.View\/(View|ViewProgress|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]ProtoBuf Response, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+# 规则1：视频播放页和弹幕接口处理（用开关控制，在iPad上建议关闭）
+# 这些接口可能影响iPad弹幕显示，所以在iPad上建议设置 enableVideoDm=false
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.view(unite)?\.v1\.View\/(View|ViewProgress|RelatesFeed)|community\.service\.dm\.v1\.DM\/DmView)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]视频弹幕处理, enable={enableVideoDm}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
-# 规则2：弹幕接口处理，使用disabled参数
-# 当 iPadDmFix=true 时，这个规则被禁用（跳过弹幕处理，弹幕正常）
-# 当 iPadDmFix=false 时，这个规则启用（处理弹幕，可能异常）
-http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.community\.service\.dm\.v1\.DM\/DmView$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]弹幕处理, disabled={iPadDmFix}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+# 规则2：其他接口处理（总是启用，提供去广告等功能）
+# 这些接口不太可能影响弹幕，所以在iPad上也可以保持启用
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]ProtoBuf其他处理, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
 [MITM]
 hostname = grpc.biliapi.net, app.bilibili.com, api.bilibili.com, api.live.bilibili.com, line3-h5-mobile-api.biligame.com
