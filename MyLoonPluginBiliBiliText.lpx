@@ -13,8 +13,8 @@ displayUpList=select, "auto", "show", "hide",tag = [动态]中[最常访问]的�
 purifyComment=switch,"false","true",tag = [评论区]过滤置顶评论广告, desc = true: 开启; false: 关闭;
 optimizeRequest=switch,"false","true",tag =[评论区]优化加载, desc = true: 开启; false: 关闭;
 sponsorBlock=switch,"false","true",tag = [空降助手]跳过视频内插播广告, desc = true: 开启; false: 关闭;
-# 新增：观看进度接口开关
-enableViewProgress=switch,"false","true",tag = [观看进度接口]处理观看进度接口, desc = true: 处理观看进度(可能影响iPad弹幕); false: 不处理观看进度(修复iPad弹幕);
+# 修改：iPad弹幕开关（默认开启修复，即不处理ViewProgress接口，弹幕正常）
+iPadDmFix=switch,"true","false",tag = [iPad弹幕]是否显示iPad弹幕, desc = true: 开启修复(不处理ViewProgress，弹幕正常); false: 关闭修复(处理ViewProgress，可能无弹幕);
 logLevel=select, "error", "warn", "info", "debug", "off",tag = 日志等级, desc = 选择日志输出等级
 
 [Rule]
@@ -58,9 +58,11 @@ http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.commu
 
 http-request ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.viewunite\.v1\.View\/View|main\.community\.reply\.v1\.Reply\/MainList)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.request.js, requires-body=true, binary-body-mode=true, timeout=10, tag=[哔哩哔哩]ProtoBuf Request, enable={optimizeRequest}, argument="[{purifyComment},{logLevel}]"
 
-# ProtoBuf处理 - 拆分观看进度接口
-# 规则1：观看进度接口（单独控制，影响iPad弹幕）
-http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view\.v1\.View\/ViewProgress$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]观看进度, enable={enableViewProgress}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
+# ProtoBuf处理 - 拆分ViewProgress接口
+# 规则1：ViewProgress接口（单独控制，影响iPad弹幕）
+# 当 iPadDmFix=true 时，此规则被禁用（不处理ViewProgress，弹幕正常）
+# 当 iPadDmFix=false 时，此规则启用（处理ViewProgress，可能无弹幕）
+http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.app\.view\.v1\.View\/ViewProgress$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]ViewProgress处理, disabled={iPadDmFix}, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
 
 # 规则2：其他所有接口（从原规则中移除ViewProgress）
 http-response ^https:\/\/(grpc\.biliapi\.net|app\.bilibili\.com)\/bilibili\.(app\.(show\.v1\.Popular\/Index|dynamic\.v2\.Dynamic\/DynAll|view(unite)?\.v1\.View\/(View|RelatesFeed)|playurl\.v1\.PlayURL\/PlayView|playerunite\.v1\.Player\/PlayViewUnite)|polymer\.app\.search\.v1\.Search\/SearchAll|community\.service\.dm\.v1\.DM\/DmView|main\.community\.reply\.v1\.Reply\/MainList|pgc\.gateway\.player\.v2\.PlayURL\/PlayView)$ script-path=https://raw.githubusercontent.com/kokoryh/Sparkle/master/dist/bilibili.protobuf.response.js, requires-body=true, binary-body-mode=true, tag=[哔哩哔哩]ProtoBuf Response, argument="[{displayUpList},{purifyComment},{sponsorBlock},{logLevel}]"
