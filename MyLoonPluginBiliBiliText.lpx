@@ -13,8 +13,8 @@ displayUpList=select, "auto", "show", "hide",tag = [动态]中[最常访问]的�
 purifyComment=switch,"false","true",tag = [评论区]过滤置顶评论广告, desc = true: 开启; false: 关闭;
 optimizeRequest=switch,"false","true",tag =[评论区]优化加载, desc = true: 开启; false: 关闭;
 sponsorBlock=switch,"false","true",tag = [空降助手]跳过视频内插播广告, desc = true: 开启; false: 关闭;
+iPadDanmuSwitch=switch,"false","true",tag=[iPad弹幕显示],desc=true: 打开显示弹幕; false: 保持原规则（可能无弹幕）;
 logLevel=select, "error", "warn", "info", "debug", "off",tag = 日志等级, desc = 选择日志输出等级
-iPadViewEndPageMock=switch,"false","true",tag=[iPad弹幕显示],desc=true: iPad显示弹幕(不mock ViewEndPage); false: 保持原逻辑(mock)
 
 [Rule]
 DOMAIN,bsbsb.top,PROXY
@@ -49,7 +49,8 @@ AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWOR
 # 移除搜索框关键词
 ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.interface\.v1\.Search\/DefaultWords$ mock-response-body data-type=text data="AAAAACEaHeaQnOe0ouinhumikeOAgeeVquWJp+aIlnVw5Li7KAE=" mock-data-is-base64=true
 # 移除播放页面广告
-^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(view\.v1\.View\/TFInfo|viewunite\.v1\.View\/ViewEndPage)$ mock-response-body data-type=text data="AAAAAAA=" mock-data-is-base64=true, enable={iPadViewEndPageMock}
+http-response ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.viewunite\.v1\.View\/ViewEndPage$ enable={iPadDanmuSwitch:false}
+mock-response-body data-type=text data="AAAAAAA=" mock-data-is-base64=true
 
 [Script]
 # 空降助手
