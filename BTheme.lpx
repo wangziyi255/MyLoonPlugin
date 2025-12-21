@@ -1,0 +1,19 @@
+[Argument]
+enable = switch, true, false, tag = ① 总开关, desc = 启用或禁用整个主题切换功能
+skinJson = input, default=, tag = ② 粘贴皮肤JSON (推荐), desc = 在此粘贴完整的皮肤JSON数据。支持多种格式:
+- 标准格式: {"user_equip":{"id":..., "package_url":"https://..."}}
+- 简洁格式: {"id":..., "name":"...", "package_url":"https://..."}
+- 嵌套格式: 脚本会自动挖掘有效信息
+skinId = input, default=, tag = ③ 或仅输入皮肤ID, desc = 仅当上方为空时生效，请输入纯数字ID (如: 1765541226001)
+
+[Rule]
+# 可选：如遇到脚本下载问题，可取消下行注释，使脚本经由代理下载更新更稳定
+# DOMAIN, raw.githubusercontent.com, PROXY
+
+[Rewrite]
+# 核心：拦截B站皮肤请求，调用智能解析脚本并传递参数
+^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme.js, requires-body=true, timeout=10, tag=B站主题切换, enable={enable}, argument=skinJson={skinJson}&skinId={skinId}
+
+[MitM]
+# 必须：需在Loon的MitM设置中启用并信任证书
+hostname = app.bilibili.com
