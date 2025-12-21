@@ -1,21 +1,13 @@
-#!name = B站动态皮肤切换
-#!desc = 基于现有代码改造，支持通过参数切换皮肤 | By wangziyi255
-#!author = wangziyi255
-#!tag = 美化
-#!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bilibili.png
-#!date = 2024-08-20
-#!loon_version = 3.1.0
+#!name = B站主题简单测试
+#!desc = 测试单一皮肤切换
+#!author = 测试
+#!tag = 测试
 
 [Argument]
-enable = switch, true, false, tag = 总开关, desc = 启用皮肤切换功能
-skinId = input, default="", tag = 皮肤ID, desc = 输入皮肤ID数字，将覆盖默认设置
-loadingId = input, default="", tag = 加载动画ID, desc = 输入加载动画ID数字
-
-[Rule]
-# 可选规则
+enable = switch, true, false, tag = 启用测试
 
 [Rewrite]
-^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme_Enhanced.js, requires-body=true, timeout=10, tag=B站皮肤切换, enable={enable}, argument=skinId={skinId}&loadingId={loadingId}
+^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme.js, requires-body=true, tag=主题测试, enable={enable}
 
 [MitM]
 hostname = app.bilibili.com
