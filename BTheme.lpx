@@ -1,19 +1,21 @@
+#!name = B站动态皮肤切换
+#!desc = 基于现有代码改造，支持通过参数切换皮肤 | By wangziyi255
+#!author = wangziyi255
+#!tag = 美化
+#!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bilibili.png
+#!date = 2024-08-20
+#!loon_version = 3.1.0
+
 [Argument]
-enable = switch, true, false, tag = ① 总开关, desc = 启用或禁用整个主题切换功能
-skinJson = input, default=, tag = ② 粘贴皮肤JSON (推荐), desc = 在此粘贴完整的皮肤JSON数据。支持多种格式:
-- 标准格式: {"user_equip":{"id":..., "package_url":"https://..."}}
-- 简洁格式: {"id":..., "name":"...", "package_url":"https://..."}
-- 嵌套格式: 脚本会自动挖掘有效信息
-skinId = input, default=, tag = ③ 或仅输入皮肤ID, desc = 仅当上方为空时生效，请输入纯数字ID (如: 1765541226001)
+enable = switch, true, false, tag = 总开关, desc = 启用皮肤切换功能
+skinId = input, default="", tag = 皮肤ID, desc = 输入皮肤ID数字，将覆盖默认设置
+loadingId = input, default="", tag = 加载动画ID, desc = 输入加载动画ID数字
 
 [Rule]
-# 可选：如遇到脚本下载问题，可取消下行注释，使脚本经由代理下载更新更稳定
-# DOMAIN, raw.githubusercontent.com, PROXY
+# 可选规则
 
 [Rewrite]
-# 核心：拦截B站皮肤请求，调用智能解析脚本并传递参数
-^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme.js, requires-body=true, timeout=10, tag=B站主题切换, enable={enable}, argument=skinJson={skinJson}&skinId={skinId}
+^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme_Enhanced.js, requires-body=true, timeout=10, tag=B站皮肤切换, enable={enable}, argument=skinId={skinId}&loadingId={loadingId}
 
 [MitM]
-# 必须：需在Loon的MitM设置中启用并信任证书
 hostname = app.bilibili.com
