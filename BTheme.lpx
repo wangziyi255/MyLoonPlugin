@@ -1,13 +1,15 @@
-#!name = B站主题简单测试
-#!desc = 测试单一皮肤切换
-#!author = 测试
-#!tag = 测试
+#!name = B站主题切换 - 直接测试
+#!desc = 测试单一皮肤切换功能 | 如果成功，主题会变为"少潮主题-测试版"
+#!author = wangziyi255
+#!tag = 美化
+#!date = 2024-08-20
 
 [Argument]
-enable = switch, true, false, tag = 启用测试
+enable = switch, true, false, tag = 总开关, desc = 开启此插件
 
-[Rewrite]
-^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BTheme.js, requires-body=true, tag=主题测试, enable={enable}
+[Script]
+# 核心：处理B站皮肤响应 - 完全按照您工作插件的格式
+http-response ^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/refs/heads/main/BTheme.js, requires-body=true, timeout=10, tag=主题切换测试, enable={enable}
 
 [MitM]
 hostname = app.bilibili.com
