@@ -1,0 +1,15 @@
+[Argument]
+enable = switch, true, false, tag = 总开关, desc = 启用或禁用主题切换功能
+
+skinJson = input, default=, tag = ① 粘贴任意皮肤JSON (智能解析), desc = 请粘贴任意包含皮肤数据的JSON，支持多种格式：
+- 完整API响应: {"user_equip": {"id":..., "package_url":"..."}, ...}
+- 单个皮肤对象: {"id":..., "name":"...", "package_url":"..."}
+- 嵌套/不规则JSON：脚本会自动挖掘有效数据
+
+skinId = input, default=, tag = ② 或仅输入皮肤ID (备用), desc = 如果上方为空，可在此输入皮肤ID数字（智能构造模式）
+
+[Rewrite]
+^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? url script-response-body https://raw.githubusercontent.com/您的用户名/您的仓库名/main/bilibili-robust-parser.js, requires-body=true, timeout=10, tag=B站主题切换-智能解析, enable={enable}, argument=skinJson={skinJson}&skinId={skinId}
+
+[MitM]
+hostname = app.bilibili.com
