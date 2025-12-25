@@ -9,7 +9,7 @@ SkinJson = input, "", tag=🎨 皮肤数据注入, desc=请在此粘贴压缩后
 
 [Script]
 # 注意：去掉了末尾所有的 ? 和 问号，只要 URL 里含 skin 就拦截
-http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme_Test_Hardcoded.js, requires-body=true, timeout=30, tag=📺 BiliBili Skin Fix
+http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme.js, requires-body=true, timeout=30, tag=📺 BiliBili Skin Fix
 
 [MITM]
 hostname = app.bilibili.com
