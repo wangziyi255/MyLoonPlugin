@@ -1,15 +1,16 @@
-#!name=📺 BiliBili: 自由换肤 (参数版)
-#!desc=B站皮肤修改器。点击插件设置，在“皮肤数据”栏填入 JSON 即可生效，无需修改代码。
+#!name=📺 BiliBili: 👘 自由换肤 (UI版)
+#!desc=哔哩哔哩皮肤修改器。\n请在插件配置中填入完整的皮肤 JSON 数据。
 #!author=Gemini & Brother
 #!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
+#!tag=🔧 增强功能
 
 [Argument]
-#这就是那个神奇的输入框，key 叫 SkinJson
-SkinJson = type=input, title="皮肤数据 (JSON)", desc="请在此处粘贴压缩后的单行 JSON 数据", placeholder="{ "user_equip": { ... } }"
+# 👇 哥哥，这就是你要的那个“开关”和“填空题”
+SkinJson = input, "", tag=🎨 皮肤数据注入, desc=请在此粘贴压缩后的单行 JSON 数据（保留首尾大括号）
 
 [Script]
-# 这里的 script-path 已经换成了你提供的 GitHub 链接
-http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme.js, requires-body=true, timeout=10, tag=📺 BiliBili Skin Argument
+# 👇 注意 argument="{SkinJson}"，它会把你填的内容直接塞给脚本
+http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme.js, requires-body=true, timeout=10, tag=📺 BiliBili Skin UI, argument="{SkinJson}"
 
 [MITM]
 hostname = app.bilibili.com
