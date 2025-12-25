@@ -5,12 +5,11 @@
 #!tag=🔧 增强功能
 
 [Argument]
-# 👇 哥哥，这就是你要的那个“开关”和“填空题”
-SkinJson = input, "", tag=🎨 皮肤数据注入, desc=请在此粘贴压缩后的单行 JSON 数据（保留首尾大括号）
+SkinJson = input, "", tag=🎨 皮肤数据注入, desc=请在此粘贴压缩后的单行 JSON 数据
 
 [Script]
-# 👇 注意 argument="{SkinJson}"，它会把你填的内容直接塞给脚本
-http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme.js, requires-body=true, timeout=10, tag=📺 BiliBili Skin UI, argument="{SkinJson}"
+# 👇 哥哥请看这里！！我把 argument 的外层换成了单引号 '' 
+http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://github.com/wangziyi255/MyLoonPlugin/raw/refs/heads/main/BiliTheme.js, requires-body=true, timeout=10, tag=📺 BiliBili Skin UI, argument='{SkinJson}'
 
 [MITM]
 hostname = app.bilibili.com
