@@ -1,11 +1,11 @@
 #!name=13Theme Manager
-#!desc=13Theme 个性化外观管理系统
+#!desc=13Theme 个性化外观管理
 #!author=wangziyi255
 #!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
 
 [MITM]
-hostname = app.bilibili.com
+hostname = app.bilibili.com, api.bilibili.com, grpc.biliapi.net
 
 [Script]
-# 核心拦截规则
-http-response ^https?:\/\/app\.bilibili\.com\/x\/(resource\/show\/skin|v2\/account\/(myinfo|mine)) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js, requires-body=true, timeout=60, tag=13Theme Engine
+# 还原了原版正则，覆盖面更广（包含 vip、mine、skin）
+http-response ^https?:\/\/(app\.bilibili\.com|api\.bilibili\.com|grpc\.biliapi\.net)\/(x\/(resource\/show\/skin|v2\/account\/(myinfo|mine)|vip\/(web\/vip_center\/combine|price\/panel\/lexi|top_panel_info))|bilibili\.app\.view\.v1\.View\/View) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js, requires-body=true, tag=13Theme Engine
