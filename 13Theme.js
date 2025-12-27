@@ -1,6 +1,6 @@
 /*
  * 13Theme Core Script
- * Fixed: 明前奶绿 Properties & Color
+ * Fixed: 全局强制换肤 (修复个人页不生效问题)
  */
 const $ = new Env("13Theme Response");
 const URL = new URLs();
@@ -10,7 +10,7 @@ const DataBase = {
 		"Settings":{
 			"Switch":true,
 			"Skin":{
-				"user_equip": 32264,
+				"user_equip": 32264, // 默认 ID
 				"load_equip": 32263
 			},
 			"Private":{
@@ -79,7 +79,6 @@ const DataBase = {
 							"tail_icon_mode": "img"
 						}
 					},
-                    // 修复版明前奶绿
 					{
 						"id": 38888,
 						"name": "明前奶绿",
@@ -162,65 +161,71 @@ const DataBase = {
 				case "application/json":
 					body = JSON.parse($response.body);
 					let data = body.data;
+
+                    // ▼▼▼ 核心修复：定义通用的换肤逻辑 ▼▼▼
+                    const injectSkin = () => {
+                        // 1. 获取 BoxJs 设置的 ID (并强制转为字符串对比)
+                        const targetSkinId = String(Settings.Skin.user_equip);
+                        const targetLoadId = String(Settings.Skin.load_equip);
+                        
+                        // 2. 在 Configs 里查找对应的皮肤数据
+                        const skinData = Configs.Skin.user_equip.find(e => String(e.id) === targetSkinId);
+                        const loadData = Configs.Skin.load_equip.find(e => String(e.id) === targetLoadId);
+
+                        // 3. 注入数据
+                        if (skinData) {
+                            $.log(`正在注入皮肤: ${skinData.name} (ID: ${skinData.id})`);
+                            data.user_equip = skinData;
+                        }
+                        if (loadData) {
+                            data.load_equip = loadData;
+                        }
+                    };
+                    
+                    const injectVIP = () => {
+                        if (Settings?.Private?.vip) {
+                            data.vip_type = 2;
+                            data.vip = {
+                                status: 1,
+                                type: 2,
+                                due_date: 4102329600000,
+                                role: 3,
+                                label: {
+                                    path: "",
+                                    text: "年度大会员",
+                                    label_theme: "hundred_annual_vip",
+                                    text_color: "#FFFFFF",
+                                    bg_style: 1,
+                                    bg_color: "#FB7299",
+                                    use_img_label: true,
+                                    img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png",
+                                }
+                            };
+                        }
+                    };
+                    // ▲▲▲ 逻辑定义结束 ▲▲▲
+
 					switch (HOST) {
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (PATH) {
+                                // 场景1: 侧边栏
 								case "x/v2/account/myinfo": 
-									if (Settings?.Private?.vip) {
-										data.vip = {
-											type: 2,
-											status: 1,
-											due_date: 4102329600000,
-											vip_pay_type: 0,
-											theme_type: 0,
-											label: {
-												path: "",
-												text: "年度大会员",
-												label_theme: "hundred_annual_vip",
-												text_color: "#FFFFFF",
-												bg_style: 1,
-												bg_color: "#FB7299",
-												use_img_label: true,
-												img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png",
-											}
-										}
-									}
+                                    injectVIP();
+                                    injectSkin(); // <--- 关键！这里也要注入皮肤
 									body.data = data;
 									break;
+                                
+                                // 场景2: 个人主页 (我的)
 								case "x/v2/account/mine": 
-									if (Settings?.Private?.vip) {
-										data.vip_type = 2;
-										data.vip = {
-											status: 1,
-											nickname_color: "#FB7299",
-											due_date: 4102329600000,
-											role: 3,
-											vip_pay_type: 0,
-											label: {
-												bg_color: "#FB7299",
-												bg_style: 1,
-												text: "年度大会员",
-												image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png",
-												label_theme: "hundred_annual_vip",
-												text_color: "#FFFFFF"
-											},
-											type: 2,
-										};
-									}
+									injectVIP();
+                                    injectSkin(); // <--- 关键！这里也要注入皮肤
 									body.data = data;
 									break;
+                                
+                                // 场景3: 皮肤管理列表
 								case "x/resource/show/skin": 
-									let skin = Configs.Skin.user_equip.find(e => Settings.Skin.user_equip == e.id);
-									if(skin) {
-										$.log("切换皮肤为: " + skin.name);
-										data.user_equip = skin;
-									}
-									
-									let load = Configs.Skin.load_equip.find(e => Settings.Skin.load_equip == e.id);
-									if(load) {
-										data.load_equip = load;
-									}
+                                    injectSkin(); // 这里原版就有，保持
 									body.data = data;
 									break;
 							};
