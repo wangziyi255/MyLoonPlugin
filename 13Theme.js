@@ -1,6 +1,6 @@
 /*
  * 13Theme Core Script
- * Fixed: 明前奶绿 Data Types
+ * Fixed: 明前奶绿 Properties & Color
  */
 const $ = new Env("13Theme Response");
 const URL = new URLs();
@@ -79,7 +79,7 @@ const DataBase = {
 							"tail_icon_mode": "img"
 						}
 					},
-                    // 修复后的奶绿
+                    // 修复版明前奶绿
 					{
 						"id": 38888,
 						"name": "明前奶绿",
@@ -87,6 +87,11 @@ const DataBase = {
 						"ver": 1665653355,
 						"package_url": "https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip",
 						"package_md5": "c4447d117a321a423eca64d05700198a",
+                        "properties": {
+                            "sale_type": "pay",
+                            "product_id": "38888",
+                            "is_old_topic": "1"
+                        },
 						"data": {
 							"color_mode": "light",
 							"color": "#212121",
@@ -97,7 +102,7 @@ const DataBase = {
 							"tail_icon_ani_mode": "once",
 							"head_myself_mp4_play": "loop",
 							"tail_icon_mode": "img",
-							"side_bg_color": ""
+							"side_bg_color": "#eaf0c8"
 						}
 					}
 				],
