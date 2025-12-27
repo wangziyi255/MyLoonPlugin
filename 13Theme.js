@@ -1,4 +1,4 @@
-const $ = new Env("📺 13Theme: 👘 Modified Response");
+const $ = new Env("13Theme Response");
 const URL = new URLs();
 
 const DataBase = {
@@ -6,11 +6,11 @@ const DataBase = {
 		"Settings":{
 			"Switch":true,
 			"Skin":{
-				"user_equip": 32264, // 默认：猫猫
-				"load_equip": 32263  // 默认：猫猫加载
+				"user_equip": 32264,
+				"load_equip": 32263
 			},
 			"Private":{
-				"coin":"", "bcoin":"", "follower":"", "level":"", "like":"", "vip":false
+				"vip":false
 			}
 		},
 		"Configs":{
@@ -19,12 +19,14 @@ const DataBase = {
 					{"id":32264,"name":"EveOneCat2","preview":"https://i0.hdslb.com/bfs/garb/item/af6ab166af22ed45d429bfde4e3962bb78f270c8.png","ver":1632051567,"package_url":"https://i0.hdslb.com/bfs/garb/zip/4f047ea64e0659dcbcf70092dd6e30c1eadb9390.zip","package_md5":"0f81680da60b12d0ca9ebe869b81e1b1","data":{"color_mode":"dark","color":"#ffffff","color_second_page":"#32376b","side_bg_color":"#32376b","tail_color":"#e9e9e9","tail_color_selected":"#fff57a","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","pub_btn_shade_color_top":"","pub_btn_shade_color_bottom":"","pub_btn_plus_color":"","tail_icon_mode":"img"}},
                     {"id":34813,"name":"嘉然个性装扮2.0 (蓝)","preview":"https://i0.hdslb.com/bfs/garb/item/4d280c3ac38059c7c528a629b7e043a90bf5ff91.jpg","ver":1655707875,"package_url":"https://i0.hdslb.com/bfs/garb/zip/6349c29877c87ffb6967a13e01c17a237380197d.zip","package_md5":"80fbc07a421a3dd885b9ec7cf6884f66","data":{"side_bg_color":"","pub_btn_shade_color_top":"","color_mode":"dark","color_second_page":"#9cbcf5","tail_color_selected":"#526fff","color":"#ffffff","tail_color":"#2648a8","pub_btn_shade_color_bottom":"","head_myself_mp4_play":"loop","tail_icon_ani_mode":"once","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
                     {"id":34814,"name":"嘉然个性装扮2.0 (粉)","preview":"https://i0.hdslb.com/bfs/garb/item/c45dd226c6eeee0dc43307995efb0b1529321e0a.jpg","ver":1655707892,"package_url":"https://i0.hdslb.com/bfs/garb/zip/14d71e4f8fda27e52a3aec6a93b358b5686cbada.zip","package_md5":"3522719bc452ad2b0c4562dd8611734a","data":{"side_bg_color":"","pub_btn_shade_color_top":"","color_mode":"light","color_second_page":"#fec9dd","tail_color_selected":"#155fe7","color":"#212121","tail_color":"#b93668","pub_btn_shade_color_bottom":"","head_myself_mp4_play":"loop","tail_icon_ani_mode":"once","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
+                    // 皮肤 ID: 38888
                     {"id":38888,"name":"明前奶绿","preview":"https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png","ver":1665653355,"package_url":"https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip","package_md5":"c4447d117a321a423eca64d05700198a","properties":{"sale_type":"pay","product_id":"38888","is_old_topic":"1"},"data":{"color_mode":"light","color":"#212121","color_second_page":"#eaf0c8","tail_color":"#744a25","tail_color_selected":"#6a6e00","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":"#eaf0c8"}}
 				],
 				"load_equip":[
 					{"id":32263,"name":"EveOneCat2","ver":"1632046310","loading_url":"https://i0.hdslb.com/bfs/garb/item/880560233ce3fe7bde792f619bc02ac7b59fb02a.webp"},
                     {"id":34811,"name":"嘉然个性装扮2.0","ver":1650337335,"loading_url":"https://i0.hdslb.com/bfs/garb/item/fed79dceb1ea584a3f336e58689fbe5ae93f69a6.webp"},
-                    {"id":38888,"name":"明前奶绿","ver":"1665653355","loading_url":"https://i0.hdslb.com/bfs/garb/item/2960d70e7a170a7522572b9a7ce5a93902506263.webp"}
+                    // 加载动画 ID: 38889 (注意这里变了！)
+                    {"id":38889,"name":"明前奶绿","ver":"1665653355","loading_url":"https://i0.hdslb.com/bfs/garb/item/2960d70e7a170a7522572b9a7ce5a93902506263.webp"}
 				]
 			},
 			"Private":{
@@ -40,17 +42,13 @@ const DataBase = {
 (async () => {
 	const { Settings, Caches, Configs } = setENV("BiliBili", "Modified", DataBase);
     
-    // ▼▼▼【核心修复】强制读取 BoxJs 设置 ▼▼▼
-    // 脚本能不能听话，全靠这两行代码！
+    // 强制读取 BoxJs 设置
     const userSkinId = $.getval("@BiliBili.Modified.Settings.Skin.user_equip");
     const loadSkinId = $.getval("@BiliBili.Modified.Settings.Skin.load_equip");
-
-    // 如果读取到了，就覆盖默认值
     if (userSkinId) Settings.Skin.user_equip = userSkinId;
     if (loadSkinId) Settings.Skin.load_equip = loadSkinId;
-    // ▲▲▲【核心修复】结束 ▲▲▲
 
-	$.log(`⚠ ${$.name}`, `当前皮肤ID: ${Settings.Skin.user_equip}`, `当前加载图ID: ${Settings.Skin.load_equip}`);
+	$.log(`⚠ ${$.name}`, `Target Skin: ${Settings.Skin.user_equip}`, `Target Load: ${Settings.Skin.load_equip}`);
 	
 	switch (Settings?.Switch) {
 		case true:
@@ -58,9 +56,7 @@ const DataBase = {
 			let url = URL.parse($request?.url);
 			const METHOD = $request?.method, HOST = url?.host, PATH = url?.path, PATHs = PATH.split("/");
 			const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
-			
 			let body = { "code": 0, "message": "0", "data": {} };
-			
 			switch (FORMAT) {
 				case undefined: 
 					break;
@@ -87,6 +83,9 @@ const DataBase = {
 									if (Settings?.Private?.vip) {
 										data.vip = { type: 2, status: 1, due_date: 4102329600000, vip_pay_type: 0, theme_type: 0, label: { path: "", text: "年度大会员", label_theme: "hundred_annual_vip", text_color: "#FFFFFF", bg_style: 1, bg_color: "#FB7299", border_color: "", use_img_label: true, img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png" } }
 									}
+                                    // 强制注入皮肤 (修复个人页不显示)
+									const mySkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
+									if (mySkin) data.user_equip = mySkin;
 									body.data = data;
 									break;
 								case "x/v2/account/mine": 
@@ -94,22 +93,21 @@ const DataBase = {
 										data.vip_type = 2;
 										data.vip = { status: 1, nickname_color: "#FB7299", due_date: 4102329600000, role: 3, vip_pay_type: 0, label: { bg_color: "#FB7299", bg_style: 1, text: "年度大会员", image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", label_theme: "hundred_annual_vip", text_color: "#FFFFFF" }, type: 2 };
 									}
+                                    // 强制注入皮肤
+									const mineSkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
+									if (mineSkin) data.user_equip = mineSkin;
 									body.data = data;
 									break;
 								case "x/resource/show/skin": 
-                                    // 查找皮肤 (衣服)
 									data.user_equip = Configs.Skin.user_equip.find(e => {
-                                        // 强制转为 String 对比，防止数字和字符串不匹配
 										if (String(Settings.Skin.user_equip) === String(e.id)) {
-											$.log("✅ 切换皮肤为: "+ e.name);
+											$.log("✅ 切换皮肤: "+ e.name);
 											return e;
 										}
 									});
-                                    // 查找加载动画 (进门图)
 									data.load_equip = Configs.Skin.load_equip.find(e => {
-                                        // 强制转为 String 对比
 										if (String(Settings.Skin.load_equip) === String(e.id)) {
-											$.log("✅ 切换加载动画为: "+ e.name);
+											$.log("✅ 切换加载动画: "+ e.name);
 											return e;
 										}
 									});
