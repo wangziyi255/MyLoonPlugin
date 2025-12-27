@@ -1,10 +1,12 @@
-[Plugin]
-name = 📺 BiliBili: 👘 自定义皮肤（支持分开填 md5）
-desc = BoxJS 粘贴 JSON + 单独填 md5，一键换肤（完整动态效果）
-icon = https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
+#!name=📺 BiliBili: 👘 自定义皮肤（支持分开填 md5）
+#!desc=BoxJS 粘贴 JSON + 单独填 md5，一键换肤（完整动态效果）
+#!author=@YourName
+#!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
+#!homepage=https://github.com/wangziyi255/MyLoonPlugin
+#!openUrl=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.json
 
 [MITM]
 hostname = app.bilibili.com
 
 [Script]
-BiliBili 自定义皮肤 = type=http-response,pattern=^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin,requires-body=true,script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js,timeout=60
+http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js, requires-body=true, timeout=60, tag=BiliBili 自定义皮肤
