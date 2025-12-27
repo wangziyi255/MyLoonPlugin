@@ -2,7 +2,7 @@
 	"id": "13Theme.sub",
 	"name": "13Theme 订阅",
 	"author": "@wangziyi255",
-	"description": "13Theme 个性化功能 (完美版)",
+	"description": "13Theme 个性化功能 (最终版)",
 	"icon": "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
 	"apps":
 	[
@@ -19,7 +19,7 @@
 			"descs_html":
 			[
 				"选择皮肤后，请点击右下角保存",
-				"注意：加载动画需要单独勾选！"
+				"注意：加载动画需单独选择"
 			],
 			"keys":
 			[
@@ -82,10 +82,12 @@
 							"key": "34811",
 							"label": "嘉然个性装扮2.0"
 						},
+                        // ▼▼▼ 注意：这里的 Key 变了 ▼▼▼
 						{
-							"key": "38888",
+							"key": "38889",
 							"label": "明前奶绿"
 						}
+                        // ▲▲▲ Key 已更新为 38889 ▲▲▲
 					]
 				},
 				{
