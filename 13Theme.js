@@ -1,11 +1,11 @@
 /*
  * 13Theme Core Script
- * 隐私保护版 - 只包含精选皮肤
+ * Privacy Protected Version
  */
 const $ = new Env("13Theme Helper");
 const URL = new URLs();
 
-// 核心数据库：仅保留 EveOneCat 和 嘉然
+// 核心数据库
 const DataBase = {
 	"13Theme":{
 		"Settings":{
@@ -105,19 +105,24 @@ const DataBase = {
 
 /***************** Processing *****************/
 (async () => {
-	// 注意：这里读取的是 13Theme 的配置
 	const { Settings, Configs } = setENV("13Theme", "13Theme", DataBase);
 	
-	if (!Settings.Switch) return;
+	if (!Settings.Switch) {
+        $.done();
+        return;
+    }
 
 	let url = URL.parse($request?.url);
 	const PATH = url?.path;
 	
-	let body = JSON.parse($response.body);
+    // 简单容错
+	let body = { data: {} };
+    try {
+        body = JSON.parse($response.body);
+    } catch(e) {}
 	if (!body.data) body.data = {};
 	let data = body.data;
 
-	// 处理 VIP 伪装
 	const injectVIP = () => {
 		if (Settings?.Private?.vip) {
 			data.vip_type = 2;
@@ -147,10 +152,10 @@ const DataBase = {
 		injectVIP();
 	}
 	else if (PATH.indexOf("resource/show/skin") > -1) {
-		// 注入皮肤
 		const targetSkinId = Settings.Skin.user_equip;
 		const targetLoadId = Settings.Skin.load_equip;
 		
+        // 强制类型转换对比，防止 ID 类型不一致
 		const skinData = Configs.Skin.user_equip.find(e => e.id == targetSkinId);
 		const loadData = Configs.Skin.load_equip.find(e => e.id == targetLoadId);
 
@@ -181,11 +186,9 @@ function getENV(key, name, database){
 		Settings: database?.Default?.Settings || {},
 		Configs: database?.[name]?.Configs || {}
 	};
-	// 合并 BoxJs 设置
 	if (BoxJs?.[name]?.Settings) {
 		Store.Settings = { ...Store.Settings, ...BoxJs[name].Settings };
 	}
-	// 处理布尔值和数字
 	for (let k in Store.Settings) {
 		let v = Store.Settings[k];
 		if (v === "true") Store.Settings[k] = true;
