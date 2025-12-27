@@ -1,0 +1,44 @@
+{
+    "id": "BiliBili.Custom.Skin.sub",
+    "name": "BiliBili 自定义皮肤（支持分开填 md5）",
+    "author": "@YourName",
+    "description": "粘贴 JSON + 单独填 md5，一键换肤",
+    "icon": "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
+    "apps": [
+        {
+            "id": "BiliBili.Custom.Skin",
+            "name": "📺 BiliBili: 👘 自定义皮肤",
+            "keys": [
+                "@BiliBili.Custom.Skin.Json",
+                "@BiliBili.Custom.Skin.Md5",
+                "@BiliBili.Custom.Skin.SelectedId"
+            ],
+            "settings": [
+                {
+                    "id": "@BiliBili.Custom.Skin.Json",
+                    "name": "皮肤 JSON（直接粘贴这里）",
+                    "val": "",
+                    "type": "textarea",
+                    "desc": "粘贴原始 JSON（不含 md5 也没事，短/长格式/数组都行，脚本自动处理）。"
+                },
+                {
+                    "id": "@BiliBili.Custom.Skin.Md5",
+                    "name": "package_md5 值（单独填这里）",
+                    "val": "",
+                    "type": "text",
+                    "desc": "如果上方 JSON 无 md5，填 zip 文件的 32 位小写 md5 值（脚本自动注入）。留空不影响颜色生效。"
+                },
+                {
+                    "id": "@BiliBili.Custom.Skin.SelectedId",
+                    "name": "装备皮肤 ID",
+                    "val": "",
+                    "type": "text",
+                    "desc": "填想装备的皮肤 id（从 JSON 复制），多皮肤切换用。留空默认第一个。"
+                }
+            ],
+            "descs_html": [
+                "<b>使用教程：</b><br>1. 粘贴原始 JSON 到第一个框（大段抓包也行）。<br>2. 如果无 md5，计算 zip md5 填到第二个框。<br>3. 填 ID + 保存 → 刷新 App 生效。<br>加载动画/播放图标/资源都会完整注入！"
+            ]
+        }
+    ]
+}
