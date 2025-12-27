@@ -1,7 +1,7 @@
 const $ = new Env("📺 BiliBili: 👘 Modified Custom response");
 const URL = new URLs();
 const DataBase = {
-	"Custom":{
+	"Modified":{
 		"Settings":{
 			"Switch":true,
 			"Skin":{
@@ -21,7 +21,7 @@ const DataBase = {
 				"user_equip":[
 					{"id":32264,"name":"EveOneCat2","preview":"https://i0.hdslb.com/bfs/garb/item/af6ab166af22ed45d429bfde4e3962bb78f270c8.png","ver":1632051567,"package_url":"https://i0.hdslb.com/bfs/garb/zip/4f047ea64e0659dcbcf70092dd6e30c1eadb9390.zip","package_md5":"0f81680da60b12d0ca9ebe869b81e1b1","data":{"color_mode":"dark","color":"#ffffff","color_second_page":"#32376b","side_bg_color":"#32376b","tail_color":"#e9e9e9","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","pub_btn_shade_color_top":"","pub_btn_shade_color_bottom":"","pub_btn_plus_color":"","tail_icon_mode":"img"}},
 					{"id":34813,"name":"嘉然个性装扮2.0","preview":"https://i0.hdslb.com/bfs/garb/item/4d280c3ac38059c7c528a629b7e043a90bf5ff91.jpg","ver":1655707875,"package_url":"https://i0.hdslb.com/bfs/garb/zip/6349c29877c87ffb6967a13e01c17a237380197d.zip","package_md5":"80fbc07a421a3dd885b9ec7cf6884f66","data":{"color_mode":"dark","color_second_page":"#9cbcf5","color":"#ffffff","tail_color":"#2648a8","head_myself_mp4_play":"loop","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
-					{"id":34814,"name":"嘉然个性装扮2.0","preview":"https://i0.hdslb.com/bfs/garb/item/c45dd226c6eeee0dc43307995efb0b1529321e0a.jpg","ver":1655707892,"package_url":"https://i0.hdslb.com/bfs/garb/zip/14d71e4f8fda27e52a3aec6a93b358b5686cbada.zip","package_md5":"3522719bc452ad2b0c4562dd8611734a","data":{"color_mode":"light","color_second_page":"#fec9dd","color":"#212121","tail_color":"#b93668","head_myself_mp4_play":"loop","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
+					{"id":34814,"name":"嘉然个性装扮2.0","preview":"https://i0.hdslb.com/bfs/garb/item/c45dd226c6eeee0dc43307995efb0b1529321e0a.jpg","ver":1655707892,"package_url":"https://i0.hdslb.com/bfs/garb/zip/14d71e4f8fda27e52a3aec6a93b358b5686cbada.zip","package_md5":"3522719bc452ad2b0c4562dd8611734a","data":{"color_mode":"light","color_second_page":"#fec9dd","color":"#212121","tail_color":"#b93668","pub_btn_shade_color_bottom":"","head_myself_mp4_play":"loop","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
 					{"id":38888,"name":"明前奶绿","preview":"https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png","ver":1665653355,"package_url":"https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip","package_md5":"c4447d117a321a423eca64d05700198a","properties":{"sale_type":"pay","product_id":"38888","is_old_topic":"1"},"data":{"color_mode":"light","color":"#212121","color_second_page":"#eaf0c8","tail_color":"#744a25","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":"#eaf0c8"}}
 				]
 			}
@@ -33,8 +33,13 @@ const DataBase = {
 };
 
 (async () => {
-	const { Settings, Caches, Configs } = setENV("BiliBili.Modified", "Custom", DataBase);
+	const { Settings, Caches, Configs } = setENV("BiliBili", "Modified.Custom", DataBase);
+	
+	const userSkinId = $.getval("@BiliBili.Modified.Custom.Settings.Skin.user_equip");
+	if (userSkinId) Settings.Skin.user_equip = userSkinId;
+
 	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
+	
 	switch (Settings?.Switch) {
 		case true:
 		default:
@@ -43,6 +48,7 @@ const DataBase = {
 			const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
 			$.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, `HOST: ${HOST}`, `PATH: ${PATH}`, `FORMAT: ${FORMAT}`, "");
 			let body = { "code": 0, "message": "0", "data": {} };
+			
 			switch (FORMAT) {
 				case undefined: 
 					break;
@@ -62,8 +68,6 @@ const DataBase = {
 					body = JSON.parse($response.body);
 					let data = body.data;
 					switch (HOST) {
-						case "www.bilibili.com":
-							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (PATH) {
@@ -71,18 +75,34 @@ const DataBase = {
 									if (Settings?.Private?.vip) {
 										data.vip = {
 											type: 2, status: 1, due_date: 4102329600000, vip_pay_type: 0, theme_type: 0,
-											label: { path: "", text: "年度大会员", label_theme: "hundred_annual_vip", text_color: "#FFFFFF", bg_style: 1, bg_color: "#FB7299", border_color: "", use_img_label: true, img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png" }
+											label: { path: "", text: "年度大会员", label_theme: "hundred_annual_vip", text_color: "#FFFFFF", bg_style: 1, bg_color: "#FB7299", border_color: "", use_img_label: true, img_label_uri_hans: "", img_label_uri_hant: "", img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", img_label_uri_hant_static: "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png" },
+											avatar_subscript: 1, nickname_color: "#FB7299", role: 3, avatar_subscript_url: "", tv_vip_status: 1, tv_vip_pay_type: 0
 										}
 									}
+									const mySkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
+									if (mySkin) data.user_equip = mySkin;
 									body.data = data;
 									break;
 								case "x/v2/account/mine":
 									if (Settings?.Private?.vip) {
-										data.vip_type = 2;
-										data.vip = {
-											status: 1, nickname_color: "#FB7299", due_date: 4102329600000, role: 3, vip_pay_type: 0,
-											label: { bg_color: "#FB7299", bg_style: 1, text: "年度大会员", image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", label_theme: "hundred_annual_vip", text_color: "#FFFFFF" }, type: 2,
-										};
+										data.senior_gate.identity = 2; data.senior_gate.member_text = "硬核会员"; data.vip_type = 2;
+										data.achievement = { senior_gate_flash: {icon: "https://i0.hdslb.com/bfs/activity-plat/static/20220818/367d27000e27de458c114d7ca4ded948/6TQojRgCjO.webp"}, top_level_flash: {icon: "https://i0.hdslb.com/bfs/activity-plat/static/20220818/367d27000e27de458c114d7ca4ded948/t5iD0zNIbM.webp"} };
+										delete data.vip_section_v2; delete data.vip_section;
+										data.vip = { status: 1, avatar_subscript: 1, nickname_color: "#FB7299", due_date: 4102329600000, role: 3, vip_pay_type: 0, avatar_subscript_url: "", label: { bg_color: "#FB7299", bg_style: 1, text: "年度大会员", border_color: "", path: "", image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", label_theme: "hundred_annual_vip", text_color: "#FFFFFF" }, type: 2, themeType: 0, theme_type: 0 };
+									}
+									const mineSkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
+									if (mineSkin) data.user_equip = mineSkin;
+									body.data = data;
+									break;
+								case "x/v2/space":
+									if ($request.headers['x-bili-mid'] === data.card.mid) {
+										if (Settings?.Private?.follower) data.card.fans = Settings.Private.follower;
+										if (Settings?.Private?.level) data.card.level_info.current_level = Settings.Private.level;
+										if (Settings?.Private?.vip) {
+											data.card.level_info.senior_inquiry.inquiry_text = "硬核会员";
+											data.card.vip = { vipStatusWarn: "", vipType: 2, dueRemark: "", vipDueDate: 4102329600000, accessStatus: 0, vipStatus: 1, themeType: 0, label: { bg_color: "#FB7299", bg_style: 1, text: "年度大会员", border_color: "", path: "", image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", label_theme: "annual_vip", text_color: "#FFFFFF" } };
+										}
+										if (Settings?.Private?.like) data.card.likes.like_num = Settings.Private.like;
 									}
 									body.data = data;
 									break;
@@ -99,17 +119,58 @@ const DataBase = {
 							break;
 						case "api.bilibili.com":
 						case "api.biliapi.net":
-							if (PATH.includes("x/vip/")) {
-								if (Settings?.Private?.vip) {
-									if(data.user && data.user.vip) {
-										data.user.vip.vip_status = 1;
-										data.user.vip.type = 2;
-										data.user.vip.vip_pay_type = 1;
-										data.user.vip.due_date = 4102329600000;
+							switch (PATH) {
+								case "pgc/player/api/playurl":
+								case "pgc/player/web/playurl":
+								case "pgc/player/web/playurl/html5":
+								case "pgc/view/v2/app/season":
+								case "pgc/view/web/season":
+								case "pgc/view/pc/season":
+								case "pgc/page/bangumi":
+								case "pgc/page/cinema/tab":
+									break;
+								case "x/vip/web/vip_center/combine":
+									if (Settings?.Private?.vip) {
+										data.user.vip.theme_type = 0;
+										data.user.vip.label = { img_label_uri_hans_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", use_img_label: true, img_label_uri_hant_static: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", bg_color: "#FB7299", bg_style: 1, text: "年度大会员", border_color: "", img_label_uri_hans: "", img_label_uri_hant: "", label_theme: "hundred_annual_vip", text_color: "#FFFFFF" }
+										data.user.vip.vip_pay_type = 0, data.user.vip.vip_due_date = 4102329600000, data.user.vip.avatar_subscript = 1, data.user.vip.is_new_user = false, data.user.vip.tip_material = null, data.user.vip.vip_type = 2, data.user.vip.avatar_subscript_url = "https://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png", data.user.vip.vip_status = 1, data.user.vip.nickname_color = "#FB7299", data.user.account_exception_text = "", data.user.vip_keep_time = 946656000,
+										data.user.notice = { tv_text: "", surplus_seconds: 0, tv_surplus_seconds: 0, type: 0, can_close: false, text: "" },
+										data.user.background_image_small = "", data.user.is_auto_renew = false, data.user.panel_sub_title = "", data.user.tv = { vip_pay_type: 0, status: 1, type: 1, due_date: 4102329600000 }, data.user.background_image_big = "", data.user.vip_overdue_explain = "年度大会员有效期 2099/12/31", data.user.tv_overdue_explain = "超级大会员有效期 2099/12/31", data.user.renew = { link: "", text: "" }
 									}
-								}
-								body.data = data;
-							}
+									body.data = data;
+									break;
+								case "x/vip/price/panel/lexi":
+									if (Settings?.Private?.vip) {
+										data.basic.user_info = { vip_status: 1, vip_type: 2, vip_overdue_time: 4102329600000, tv_vip_overdue_time: 4102329600000, tv_vip_status: 1 }
+									}
+									body.data = data;
+									break;
+								case "x/vip/top_panel_info":
+									if (Settings?.Private?.vip) {
+										data.ever_vip = false; data.vip_overdue_time = 0; data.vip_type = 2; data.tv = "超级大会员：有效期至2099-12-31"; data.vip_status = 1; data.vip = "大会员：有效期至2099-12-31"; data.tv_vip_status = 1;
+									}
+									body.data = data;
+									break;
+								case "x/player/wbi/playurl":
+									break;
+								case "x/space/acc/info":
+								case "x/space/wbi/acc/info":
+									switch (url.params?.vmid || url.params?.mid) {
+										case "11783021":
+										case "1988098633":
+										case "2042149112":
+											break;
+										default:
+											break;
+									};
+									break;
+							};
+							break;
+						case "api.live.bilibili.com":
+							switch (PATH) {
+								case "xlive/app-room/v1/index/getInfoByRoom":
+									break;
+							};
 							break;
 					};
 					$response.body = JSON.stringify(body);
@@ -119,16 +180,82 @@ const DataBase = {
 				case "application/grpc+proto":
 				case "applecation/octet-stream":
 					let rawBody = $.isQuanX() ? new Uint8Array($response.bodyBytes) : $response.body;
-					try {
-						let header = rawBody.slice(0, 5);
-						let body = rawBody.slice(5);
-						if (header?.[0] === 1 && typeof pako !== 'undefined') {
-							body = pako.ungzip(body);
-							header[0] = 0;
-							body = pako.gzip(body);
-						}
-						rawBody = newRawBody({ header, body });
-					} catch(e) {}
+					switch (FORMAT) {
+						case "application/x-protobuf":
+							break;
+						case "application/grpc":
+						case "application/grpc+proto":
+							let header = rawBody.slice(0, 5);
+							body = rawBody.slice(5);
+							switch (header?.[0]) {
+								case 0:
+									break;
+								case 1:
+									body = pako.ungzip(body);
+									header[0] = 0;
+									break;
+							};
+							switch (HOST) {
+								case "grpc.biliapi.net":
+								case "app.bilibili.com":
+									switch (PATHs?.[0]) {
+										case "bilibili.app.playurl.v1.PlayURL":
+											switch (PATHs?.[1]) {
+												case "PlayView":
+													break;
+												case "PlayConf":
+													break;
+											};
+											break;
+										case "bilibili.app.dynamic.v2.Dynamic":
+											switch (PATHs?.[1]) {
+												case "DynAll":
+													break;
+											}
+											break;
+										case "bilibili.app.view.v1.View":
+											switch (PATHs?.[1]) {
+												case "View":
+													break;
+											}
+											break;
+										case "bilibili.pgc.gateway.player.v2.PlayURL":
+											switch (PATHs?.[1]) {
+												case "PlayView": {
+													break;
+												};
+												case "PlayConf":
+													break;
+											};
+											break;
+										case "bilibili.app.nativeact.v1.NativeAct":
+											switch (PATHs?.[1]) {
+												case "Index":
+													break;
+											};
+											break;
+										case "bilibili.app.interface.v1.Search":
+											switch (PATHs?.[1]) {
+												case "Suggest3":
+													break;
+											};
+											break;
+										case "bilibili.polymer.app.search.v1.Search":
+											switch (PATHs?.[1]) {
+												case "SearchAll": {
+													break;
+												};
+												case "SearchByType": {
+													break;
+												};
+											};
+											break;
+									};
+									break;
+							};
+							rawBody = newRawBody({ header, body });
+							break;
+					};
 					if ($.isQuanX()) $response.bodyBytes = rawBody
 					else $response.body = rawBody;
 					break;
@@ -140,32 +267,67 @@ const DataBase = {
 })()
 	.catch((e) => $.logErr(e))
 	.finally(() => {
-		if ($response) {
-			const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
-			if ($.isQuanX() && (FORMAT.includes("protobuf") || FORMAT.includes("grpc"))) {
-				$.done({ headers: $response.headers, bodyBytes: $response.bodyBytes.buffer.slice($response.bodyBytes.byteOffset, $response.bodyBytes.byteLength + $response.bodyBytes.byteOffset) });
-			} else {
-				$.done({ headers: $response.headers, body: $response.body });
-			}
-		} else {
-			$.done();
-		}
+		switch ($response) {
+			default: {
+				const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
+				$.log(`🎉 ${$.name}, finally`, `$response`, `FORMAT: ${FORMAT}`, "");
+				if ($response?.headers?.["Content-Encoding"]) $response.headers["Content-Encoding"] = "identity";
+				if ($response?.headers?.["content-encoding"]) $response.headers["content-encoding"] = "identity";
+				if ($.isQuanX()) {
+					switch (FORMAT) {
+						case undefined:
+							$.done({ headers: $response.headers });
+							break;
+						case "application/x-www-form-urlencoded":
+						case "text/plain":
+						case "text/html":
+						case "text/xml":
+						case "text/plist":
+						case "application/xml":
+						case "application/plist":
+						case "application/x-plist":
+						case "text/json":
+						case "application/json":
+						default:
+							$.done({ headers: $response.headers, body: $response.body });
+							break;
+						case "application/x-protobuf":
+						case "application/grpc":
+						case "application/grpc+proto":
+						case "applecation/octet-stream":
+							$.done({ headers: $response.headers, bodyBytes: $response.bodyBytes.buffer.slice($response.bodyBytes.byteOffset, $response.bodyBytes.byteLength + $response.bodyBytes.byteOffset) });
+							break;
+					};
+				} else $.done($response);
+				break;
+			};
+			case undefined: {
+				break;
+			};
+		};
 	})
 
 function setENV(name, platforms, database) {
+	$.log(`☑️ ${$.name}, Set Environment Variables`, "");
 	let { Settings, Caches, Configs } = getENV(name, platforms, database);
+	$.log(`✅ ${$.name}, Set Environment Variables`, `Settings: ${typeof Settings}`, `Settings内容: ${JSON.stringify(Settings)}`, "");
 	return { Settings, Caches, Configs };
 };
 function newRawBody({ header, body }, encoding = undefined) {
 	const flag = (encoding == "gzip") ? 1 : (encoding == "identity") ? 0 : (encoding == undefined) ? 0 : header?.[0] ?? 0;
 	const checksum = Checksum(body.length);
-	if (encoding == "gzip" && typeof pako !== 'undefined') body = pako.gzip(body);
+	if (encoding == "gzip") body = pako.gzip(body);
 	let rawBody = new Uint8Array(header.length + body.length);
 	rawBody.set([flag], 0)
 	rawBody.set(checksum, 1)
 	rawBody.set(body, 5);
 	return rawBody;
-	function Checksum(num) { let arr = new ArrayBuffer(4); let view = new DataView(arr); view.setUint32(0, num, false); return new Uint8Array(arr); };
+	function Checksum(num) {
+		let arr = new ArrayBuffer(4);
+		let view = new DataView(arr);
+		view.setUint32(0, num, false);
+		return new Uint8Array(arr);
+	};
 };
 function URLs(t){return new class{constructor(t=[]){this.name="URL v1.2.2",this.opts=t,this.json={scheme:"",host:"",path:"",type:"",query:{}}}parse(t){let s=t.match(/(?:(?<scheme>.+):\/\/(?<host>[^/]+))?\/?(?<path>[^?]+)?\??(?<query>[^?]+)?/)?.groups??null;return s?.path?s.paths=s?.path?.split("/"):s.path="",s?.paths&&(s.type=s?.paths?.[s?.paths?.length-1]?.split(".")?.[1]),s?.query&&(s.query=Object.fromEntries(s.query.split("&").map((t=>t.split("="))))),s}stringify(t=this.json){let s="";return t?.scheme&&t?.host&&(s+=t.scheme+"://"+t.host),t?.path&&(s+=t?.host?"/"+t.path:t.path),t?.query&&(s+="?"+Object.entries(t.query).map((t=>t.join("="))).join("&")),s}}(t)}
 function getENV(key,names,database){let BoxJs=$.getjson(key,database),Argument={};if("undefined"!=typeof $argument&&Boolean($argument)){let arg=Object.fromEntries($argument.split("&").map((item=>item.split("="))));for(let item in arg)setPath(Argument,item,arg[item])}const Store={Settings:database?.Default?.Settings||{},Configs:database?.Default?.Configs||{},Caches:{}};Array.isArray(names)||(names=[names]);for(let name of names)Store.Settings={...Store.Settings,...database?.[name]?.Settings,...BoxJs?.[name]?.Settings,...Argument},Store.Configs={...Store.Configs,...database?.[name]?.Configs},BoxJs?.[name]?.Caches&&"string"==typeof BoxJs?.[name]?.Caches&&(BoxJs[name].Caches=JSON.parse(BoxJs?.[name]?.Caches)),Store.Caches={...Store.Caches,...BoxJs?.[name]?.Caches};return function traverseObject(o,c){for(var t in o){var n=o[t];o[t]="object"==typeof n&&null!==n?traverseObject(n,c):c(t,n)}return o}(Store.Settings,((key,value)=>("true"===value||"false"===value?value=JSON.parse(value):"string"==typeof value&&(value?.includes(",")?value=value.split(","):value&&!isNaN(value)&&(value=parseInt(value,10))),value))),Store;function setPath(object,path,value){path.split(".").reduce(((o,p,i)=>o[p]=path.split(".").length===++i?value:o[p]||{}),object)}}
