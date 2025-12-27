@@ -7,7 +7,7 @@
 	"apps":
 	[
 		{
-			"id": "13Theme.Settings",
+			"id": "BiliBili.Modified.Setting",
 			"name": "13Theme 设置",
 			"author": "@wangziyi255",
 			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js",
@@ -22,21 +22,21 @@
 			],
 			"keys":
 			[
-				"@13Theme.Settings.Switch",
-				"@13Theme.Settings.Skin",
-				"@13Theme.Settings.Private"
+				"@BiliBili.Modified.Settings.Switch",
+				"@BiliBili.Modified.Settings.Skin",
+				"@BiliBili.Modified.Settings.Private"
 			],
 			"settings":
 			[
 				{
-					"id": "@13Theme.Settings.Switch",
+					"id": "@BiliBili.Modified.Settings.Switch",
 					"name": "总功能开关",
 					"val": true,
 					"type": "boolean",
 					"desc": "是否启用修改"
 				},
 				{
-					"id": "@13Theme.Settings.Skin.user_equip",
+					"id": "@BiliBili.Modified.Settings.Skin.user_equip",
 					"name": "皮肤选择",
 					"val":
 					[
@@ -64,7 +64,7 @@
 					]
 				},
 				{
-					"id": "@13Theme.Settings.Skin.load_equip",
+					"id": "@BiliBili.Modified.Settings.Skin.load_equip",
 					"name": "加载动画",
 					"val":
 					[
@@ -84,42 +84,42 @@
 					]
 				},
 				{
-					"id": "@13Theme.Settings.Private.vip",
+					"id": "@BiliBili.Modified.Settings.Private.vip",
 					"name": "大会员伪装",
 					"val": false,
 					"type": "boolean",
 					"desc": "是否更改为大会员状态（自慰）"
 				},
 				{
-					"id": "@13Theme.Settings.Private.coin",
+					"id": "@BiliBili.Modified.Settings.Private.coin",
 					"name": "硬币数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@13Theme.Settings.Private.bcoin",
+					"id": "@BiliBili.Modified.Settings.Private.bcoin",
 					"name": "B币数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@13Theme.Settings.Private.follower",
+					"id": "@BiliBili.Modified.Settings.Private.follower",
 					"name": "粉丝数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@13Theme.Settings.Private.level",
+					"id": "@BiliBili.Modified.Settings.Private.level",
 					"name": "用户等级",
 					"val": "",
 					"type": "text",
 					"desc": "小于等于6"
 				},
 				{
-					"id": "@13Theme.Settings.Private.like",
+					"id": "@BiliBili.Modified.Settings.Private.like",
 					"name": "被赞次数",
 					"val": "",
 					"type": "text",
