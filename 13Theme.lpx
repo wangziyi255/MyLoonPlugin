@@ -1,11 +1,10 @@
-#!name=📺 BiliBili: 👘 自定义皮肤 (Fix)
-#!desc=BoxJS 粘贴 JSON + 任意页面生效
-#!author=Gemini & You
+#!name=13Theme Manager
+#!desc=13Theme 个性化外观管理
 #!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
 
 [MITM]
 hostname = app.bilibili.com
 
 [Script]
-# 重点：正则里加入了 account/mine 和 myinfo，确保在“我的”页面也能看到皮肤
-http-response ^https?:\/\/app\.bilibili\.com\/x\/(resource\/show\/skin|v2\/account\/(myinfo|mine)) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js, requires-body=true, timeout=60, tag=BiliBili 自定义皮肤
+# 拦截皮肤和个人页接口，指向 13Theme.js
+http-response ^https?:\/\/app\.bilibili\.com\/x\/(resource\/show\/skin|v2\/account\/(myinfo|mine)) script-path=https://raw.githubusercontent.com/你的GitHub用户名/你的仓库名/main/13Theme.js, requires-body=true, timeout=60, tag=13Theme Engine
