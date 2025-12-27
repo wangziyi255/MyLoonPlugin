@@ -1,7 +1,7 @@
 {
 	"id": "13Theme.sub",
 	"name": "13Theme 订阅",
-	"author": "@YourName",
+	"author": "@wangziyi255",
 	"description": "个性化主题 - 隐私保护版",
 	"icon": "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
 	"apps":
@@ -9,8 +9,8 @@
 		{
 			"id": "13Theme.Manager",
 			"name": "13Theme 设置",
-			"author": "@YourName",
-			"script": "https://raw.githubusercontent.com/你的GitHub用户名/你的仓库名/main/13Theme.js",
+			"author": "@wangziyi255",
+			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/13Theme.js",
 			"icons":
 			[
 				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
