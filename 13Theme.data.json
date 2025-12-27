@@ -1,0 +1,146 @@
+{
+	"13Theme":
+	{
+		"Settings":
+		{
+			"Switch": true,
+			"Skin":
+			{
+				"user_equip": 32264,
+				"load_equip": 32263
+			},
+			"Private":{
+				"coin":"",
+				"bcoin":"",
+				"follower":"",
+				"level":"",
+				"like":"",
+				"vip":false
+			}
+		},
+		"Configs":
+		{
+			"Skin":
+			{
+				"user_equip":
+				[
+					{
+						"id": 32264,
+						"name": "EveOneCat2",
+						"preview": "https://i0.hdslb.com/bfs/garb/item/af6ab166af22ed45d429bfde4e3962bb78f270c8.png",
+						"ver": 1632051567,
+						"package_url": "https://i0.hdslb.com/bfs/garb/zip/4f047ea64e0659dcbcf70092dd6e30c1eadb9390.zip",
+						"package_md5": "0f81680da60b12d0ca9ebe869b81e1b1",
+						"data":
+						{
+							"color_mode": "dark",
+							"color": "#ffffff",
+							"color_second_page": "#32376b",
+							"side_bg_color": "#32376b",
+							"tail_color": "#e9e9e9",
+							"tail_color_selected": "#fff57a",
+							"tail_icon_ani": true,
+							"tail_icon_ani_mode": "once",
+							"head_myself_mp4_play": "loop",
+							"pub_btn_shade_color_top": "",
+							"pub_btn_shade_color_bottom": "",
+							"pub_btn_plus_color": "",
+							"tail_icon_mode": "img"
+						}
+					},
+					{
+						"id": 34813,
+						"name": "嘉然个性装扮2.0 (蓝)",
+						"preview": "https://i0.hdslb.com/bfs/garb/item/4d280c3ac38059c7c528a629b7e043a90bf5ff91.jpg",
+						"ver": 1655707875,
+						"package_url": "https://i0.hdslb.com/bfs/garb/zip/6349c29877c87ffb6967a13e01c17a237380197d.zip",
+						"package_md5": "80fbc07a421a3dd885b9ec7cf6884f66",
+						"data":
+						{
+							"side_bg_color": "",
+							"pub_btn_shade_color_top": "",
+							"color_mode": "dark",
+							"color_second_page": "#9cbcf5",
+							"tail_color_selected": "#526fff",
+							"color": "#ffffff",
+							"tail_color": "#2648a8",
+							"pub_btn_shade_color_bottom": "",
+							"head_myself_mp4_play": "loop",
+							"tail_icon_ani_mode": "once",
+							"tail_icon_ani": false,
+							"tail_icon_mode": "img",
+							"pub_btn_plus_color": ""
+						}
+					},
+					{
+						"id": 34814,
+						"name": "嘉然个性装扮2.0 (粉)",
+						"preview": "https://i0.hdslb.com/bfs/garb/item/c45dd226c6eeee0dc43307995efb0b1529321e0a.jpg",
+						"ver": 1655707892,
+						"package_url": "https://i0.hdslb.com/bfs/garb/zip/14d71e4f8fda27e52a3aec6a93b358b5686cbada.zip",
+						"package_md5": "3522719bc452ad2b0c4562dd8611734a",
+						"data":
+						{
+							"side_bg_color": "",
+							"pub_btn_shade_color_top": "",
+							"color_mode": "light",
+							"color_second_page": "#fec9dd",
+							"tail_color_selected": "#155fe7",
+							"color": "#212121",
+							"tail_color": "#b93668",
+							"pub_btn_shade_color_bottom": "",
+							"head_myself_mp4_play": "loop",
+							"tail_icon_ani_mode": "once",
+							"tail_icon_ani": false,
+							"tail_icon_mode": "img",
+							"pub_btn_plus_color": ""
+						}
+					},
+					{
+						"id": 38888,
+						"name": "明前奶绿",
+						"preview": "https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png",
+						"ver": 1665653355,
+						"package_url": "https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip",
+						"package_md5": "c4447d117a321a423eca64d05700198a",
+                        "properties": {
+                            "sale_type": "pay",
+                            "product_id": "38888",
+                            "is_old_topic": "1"
+                        },
+						"data": {
+							"color_mode": "light",
+							"color": "#212121",
+							"color_second_page": "#eaf0c8",
+							"tail_color": "#744a25",
+							"tail_color_selected": "#6a6e00",
+							"tail_icon_ani": true,
+							"tail_icon_ani_mode": "once",
+							"head_myself_mp4_play": "loop",
+							"tail_icon_mode": "img",
+							"side_bg_color": "#eaf0c8"
+						}
+					}
+				],
+				"load_equip":
+				[
+					{
+						"id": 32263,
+						"name": "EveOneCat2",
+						"ver": "1632046310",
+						"loading_url": "https://i0.hdslb.com/bfs/garb/item/880560233ce3fe7bde792f619bc02ac7b59fb02a.webp"
+					},
+					{
+						"id": 34811,
+						"name": "嘉然个性装扮2.0",
+						"ver": 1650337335,
+						"loading_url": "https://i0.hdslb.com/bfs/garb/item/fed79dceb1ea584a3f336e58689fbe5ae93f69a6.webp"
+					}
+				]
+			},
+			"Private":
+			{
+			}
+		}
+	}
+}
