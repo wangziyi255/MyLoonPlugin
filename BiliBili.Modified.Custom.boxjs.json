@@ -18,26 +18,26 @@
 			],
 			"descs_html":
 			[
-				"依次选择皮肤、加载动画、是否修改大会员等",
+				"依次选择皮肤、是否修改大会员等",
 				"选择完成后记得点击此页面底端右下角的\"保存\"。"
 			],
 			"keys":
 			[
-				"@BiliBili.Modified.Custom.Settings.Switch",
-				"@BiliBili.Modified.Custom.Settings.Skin",
-				"@BiliBili.Modified.Custom.Settings.Private"
+				"@BiliBili.ModifiedCustom.Settings.Switch",
+				"@BiliBili.ModifiedCustom.Settings.Skin",
+				"@BiliBili.ModifiedCustom.Settings.Private"
 			],
 			"settings":
 			[
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Switch",
+					"id": "@BiliBili.ModifiedCustom.Settings.Switch",
 					"name": "总功能开关",
 					"val": true,
 					"type": "boolean",
 					"desc": "是否启用修改"
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Skin.user_equip",
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.user_equip",
 					"name": "皮肤选择",
 					"val":
 					[
@@ -65,42 +65,42 @@
 					]
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.vip",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.vip",
 					"name": "大会员伪装",
 					"val": false,
 					"type": "boolean",
 					"desc": "是否更改为大会员状态（自慰）"
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.coin",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.coin",
 					"name": "硬币数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.bcoin",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.bcoin",
 					"name": "B币数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.follower",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.follower",
 					"name": "粉丝数",
 					"val": "",
 					"type": "text",
 					"desc": ""
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.level",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.level",
 					"name": "用户等级",
 					"val": "",
 					"type": "text",
 					"desc": "小于等于6"
 				},
 				{
-					"id": "@BiliBili.Modified.Custom.Settings.Private.like",
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.like",
 					"name": "被赞次数",
 					"val": "",
 					"type": "text",
