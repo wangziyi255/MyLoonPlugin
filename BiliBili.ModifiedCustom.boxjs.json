@@ -1,5 +1,5 @@
 {
-	"id": "BiliBili.Modified.Custom.sub",
+	"id": "BiliBili.ModifiedCustom.sub", 
 	"name": "BiliBili: 👘 Modified Custom",
 	"author": "@MartinsKing",
 	"description": "BiliBili 皮肤修改 (定制版)",
@@ -7,10 +7,10 @@
 	"apps":
 	[
 		{
-			"id": "BiliBili.Modified.Custom.Settings",
+			"id": "BiliBili.ModifiedCustom.Settings",
 			"name": "📺 BiliBili: 👘 Modified Custom",
 			"author": "@MartinsKing",
-			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.Modified.Custom.js",
+			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js",
 			"icons":
 			[
 				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
