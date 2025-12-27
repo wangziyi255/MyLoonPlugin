@@ -1,0 +1,14 @@
+#!name=BiliBili: 👘 Modified Custom
+#!desc=哔哩哔哩：👘 皮肤 (定制精简版)
+#!author=MartinsKing
+#!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
+
+[Script]
+http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.Modified.Custom.js, requires-body=true, tag=BiliBili.Modified.Custom.Skin
+
+http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/(account\/(myinfo|mine)|space)([\/?]|$) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.Modified.Custom.js, requires-body=true, tag=BiliBili.Modified.Custom.Account
+
+http-response ^https:\/\/api\.bilibili\.com\/x\/vip\/(web\/vip_center\/combine|price\/panel\/lexi|top_panel_info) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.Modified.Custom.js, requires-body=true, tag=BiliBili.Modified.Custom.VIP
+
+[MITM]
+hostname = app.bilibili.com, api.bilibili.com
