@@ -1,6 +1,6 @@
 /*
  * 13Theme Core Script
- * Added: 明前奶绿
+ * Fixed: 明前奶绿 Data Types
  */
 const $ = new Env("13Theme Response");
 const URL = new URLs();
@@ -10,7 +10,7 @@ const DataBase = {
 		"Settings":{
 			"Switch":true,
 			"Skin":{
-				"user_equip": 32264, // 默认皮肤
+				"user_equip": 32264,
 				"load_equip": 32263
 			},
 			"Private":{
@@ -79,11 +79,12 @@ const DataBase = {
 							"tail_icon_mode": "img"
 						}
 					},
+                    // 修复后的奶绿
 					{
 						"id": 38888,
 						"name": "明前奶绿",
 						"preview": "https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png",
-						"ver": "1665653355",
+						"ver": 1665653355,
 						"package_url": "https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip",
 						"package_md5": "c4447d117a321a423eca64d05700198a",
 						"data": {
