@@ -6,16 +6,11 @@ const DataBase = {
 		"Settings":{
 			"Switch":true,
 			"Skin":{
-				"user_equip": 32264,
-				"load_equip": 32263
+				"user_equip": 32264, // 默认：猫猫
+				"load_equip": 32263  // 默认：猫猫加载
 			},
 			"Private":{
-				"coin":"",
-				"bcoin":"",
-				"follower":"",
-				"level":"",
-				"like":"",
-				"vip":false
+				"coin":"", "bcoin":"", "follower":"", "level":"", "like":"", "vip":false
 			}
 		},
 		"Configs":{
@@ -44,15 +39,28 @@ const DataBase = {
 /***************** Processing *****************/
 (async () => {
 	const { Settings, Caches, Configs } = setENV("BiliBili", "Modified", DataBase);
-	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
+    
+    // ▼▼▼【核心修复】强制读取 BoxJs 设置 ▼▼▼
+    // 脚本能不能听话，全靠这两行代码！
+    const userSkinId = $.getval("@BiliBili.Modified.Settings.Skin.user_equip");
+    const loadSkinId = $.getval("@BiliBili.Modified.Settings.Skin.load_equip");
+
+    // 如果读取到了，就覆盖默认值
+    if (userSkinId) Settings.Skin.user_equip = userSkinId;
+    if (loadSkinId) Settings.Skin.load_equip = loadSkinId;
+    // ▲▲▲【核心修复】结束 ▲▲▲
+
+	$.log(`⚠ ${$.name}`, `当前皮肤ID: ${Settings.Skin.user_equip}`, `当前加载图ID: ${Settings.Skin.load_equip}`);
+	
 	switch (Settings?.Switch) {
 		case true:
 		default:
 			let url = URL.parse($request?.url);
 			const METHOD = $request?.method, HOST = url?.host, PATH = url?.path, PATHs = PATH.split("/");
 			const FORMAT = ($response?.headers?.["Content-Type"] ?? $response?.headers?.["content-type"])?.split(";")?.[0];
-			$.log(`⚠ ${$.name}`, `METHOD: ${METHOD}`, `HOST: ${HOST}`, `PATH: ${PATH}`, `FORMAT: ${FORMAT}`, "");
+			
 			let body = { "code": 0, "message": "0", "data": {} };
+			
 			switch (FORMAT) {
 				case undefined: 
 					break;
@@ -72,8 +80,6 @@ const DataBase = {
 					body = JSON.parse($response.body);
 					let data = body.data;
 					switch (HOST) {
-						case "www.bilibili.com":
-							break;
 						case "app.bilibili.com":
 						case "app.biliapi.net":
 							switch (PATH) {
@@ -91,15 +97,19 @@ const DataBase = {
 									body.data = data;
 									break;
 								case "x/resource/show/skin": 
+                                    // 查找皮肤 (衣服)
 									data.user_equip = Configs.Skin.user_equip.find(e => {
+                                        // 强制转为 String 对比，防止数字和字符串不匹配
 										if (String(Settings.Skin.user_equip) === String(e.id)) {
-											$.log("切换皮肤为: "+ e.name);
+											$.log("✅ 切换皮肤为: "+ e.name);
 											return e;
 										}
 									});
+                                    // 查找加载动画 (进门图)
 									data.load_equip = Configs.Skin.load_equip.find(e => {
+                                        // 强制转为 String 对比
 										if (String(Settings.Skin.load_equip) === String(e.id)) {
-											$.log("切换加载动画为: "+ e.name);
+											$.log("✅ 切换加载动画为: "+ e.name);
 											return e;
 										}
 									});
