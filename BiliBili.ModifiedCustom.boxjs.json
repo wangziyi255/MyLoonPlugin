@@ -1,16 +1,144 @@
-#!name=📺 BiliBili: 👘 ModifiedCustom
-#!desc=哔哩哔哩：👘 皮肤 (定制版)
-#!author=MartinsKing
-#!icon=https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png
-#!tag=MK
-#!openUrl=http://boxjs.com/#/app/BiliBili.ModifiedCustom.sub
-
-[Script]
-http-response ^https?:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js, requires-body=true, tag=📺 BiliBili.ModifiedCustom.x.resource.show.skin
-
-http-response ^https:\/\/app\.bilibili\.com\/x\/v2\/(account\/(myinfo|mine)|space)([\/?]|$) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js, requires-body=true, tag=📺 BiliBili.ModifiedCustom.x.v2
-
-http-response ^https:\/\/api\.bilibili\.com\/x\/vip\/(web\/vip_center\/combine|price\/panel\/lexi|top_panel_info) script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js, requires-body=true, tag=📺 BiliBili.ModifiedCustom.x.vip
-
-[MITM]
-hostname = app.bilibili.com, api.bilibili.com
+{
+	"id": "BiliBili.ModifiedCustom.sub",
+	"name": "BiliBili: 👘 Modified Custom",
+	"author": "@MartinsKing",
+	"description": "BiliBili 皮肤修改 (定制版)",
+	"icon": "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
+	"apps":
+	[
+		{
+			"id": "BiliBili.ModifiedCustom.Settings",
+			"name": "📺 BiliBili: 👘 Modified Custom",
+			"author": "@MartinsKing",
+			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js",
+			"icons":
+			[
+				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
+				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png"
+			],
+			"descs_html":
+			[
+				"依次选择皮肤、加载动画等",
+				"选择完成后记得点击此页面底端右下角的\"保存\"。"
+			],
+			"keys":
+			[
+				"@BiliBili.ModifiedCustom.Settings.Switch",
+				"@BiliBili.ModifiedCustom.Settings.Skin",
+				"@BiliBili.ModifiedCustom.Settings.Private"
+			],
+			"settings":
+			[
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Switch",
+					"name": "总功能开关",
+					"val": true,
+					"type": "boolean",
+					"desc": "是否启用修改"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.user_equip",
+					"name": "皮肤选择 (User Equip)",
+					"val":
+					[
+						"32264"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "32264",
+							"label": "EveOneCat2"
+						},
+						{
+							"key": "34813",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "34814",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "38888",
+							"label": "明前奶绿"
+						},
+						{
+							"key": "1700450744001",
+							"label": "Akie秋绘璀璨星辰"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.load_equip",
+					"name": "加载动画 (Load Equip)",
+					"val":
+					[
+						"32263"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "",
+							"label": "默认 (小电视)"
+						},
+						{
+							"key": "32263",
+							"label": "EveOneCat2"
+						},
+						{
+							"key": "34811",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "1700450116001",
+							"label": "Akie秋绘璀璨星辰"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.vip",
+					"name": "大会员伪装",
+					"val": false,
+					"type": "boolean",
+					"desc": "是否更改为大会员状态（自慰）"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.coin",
+					"name": "硬币数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.bcoin",
+					"name": "B币数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.follower",
+					"name": "粉丝数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.level",
+					"name": "用户等级",
+					"val": "",
+					"type": "text",
+					"desc": "小于等于6"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.like",
+					"name": "被赞次数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				}
+			]
+		}
+	]
+}
