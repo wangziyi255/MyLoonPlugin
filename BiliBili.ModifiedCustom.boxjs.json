@@ -1,5 +1,5 @@
 {
-	"id": "BiliBili.ModifiedCustom.sub", 
+	"id": "BiliBili.ModifiedCustom.sub",
 	"name": "BiliBili: 👘 Modified Custom",
 	"author": "@MartinsKing",
 	"description": "BiliBili 皮肤修改 (定制版)",
@@ -18,7 +18,7 @@
 			],
 			"descs_html":
 			[
-				"依次选择皮肤、是否修改大会员等",
+				"依次选择皮肤、加载动画、播放图标等",
 				"选择完成后记得点击此页面底端右下角的\"保存\"。"
 			],
 			"keys":
@@ -38,14 +38,18 @@
 				},
 				{
 					"id": "@BiliBili.ModifiedCustom.Settings.Skin.user_equip",
-					"name": "皮肤选择",
+					"name": "皮肤选择 (User Equip)",
 					"val":
 					[
-						"32264"
+						"1700450744001"
 					],
 					"type": "radios",
 					"items":
 					[
+						{
+							"key": "1700450744001",
+							"label": "Akie秋绘璀璨星辰"
+						},
 						{
 							"key": "32264",
 							"label": "EveOneCat2"
@@ -61,6 +65,38 @@
 						{
 							"key": "38888",
 							"label": "明前奶绿"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.load_equip",
+					"name": "加载动画 (Load Equip)",
+					"val":
+					[
+						"1700450116001"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "1700450116001",
+							"label": "Akie秋绘璀璨星辰"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.play_icon",
+					"name": "播放图标 (Play Icon)",
+					"val":
+					[
+						"1700452467001"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "1700452467001",
+							"label": "Akie秋绘璀璨星辰"
 						}
 					]
 				},
