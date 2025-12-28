@@ -1,13 +1,12 @@
-const $ = new Env("📺 BiliBili: 👘 Modified Custom response");
+const $ = new Env("📺 BiliBili: 👘 ModifiedCustom response");
 const URL = new URLs();
-// 数据内嵌，含融合版 Akie
 const DataBase = {
 	"ModifiedCustom":{
 		"Settings":{
 			"Switch":true,
 			"Skin":{
-				"user_equip":1700450744001,
-				"load_equip":1700450116001
+				"user_equip":32264,
+				"load_equip":32263
 			},
 			"Private":{
 				"coin":"", "bcoin":"", "follower":"", "level":"", "like":"", "vip":false
@@ -16,14 +15,17 @@ const DataBase = {
 		"Configs":{
 			"Skin":{
 				"user_equip":[
-					{"id":1700450744001,"name":"Akie秋绘璀璨星辰","preview":"https://i0.hdslb.com/bfs/garb/f8b5caf5c74cc4cc2994a2d7a2aee16a5d4b79a7.png","ver":"1700538601","package_url":"https://i0.hdslb.com/bfs/garb/zip/9c5e97dd10798ccab3d0c12f594fbc967a64a780.zip","package_md5":"25dbcbd37329241f16819b193dd05045","data":{"color_mode":"dark","color":"#ffffff","color_second_page":"#08172C","tail_color":"#FFA46A","tail_color_selected":"#FFE7B5","tail_icon_ani":"","tail_icon_ani_mode":"","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":""}},
 					{"id":32264,"name":"EveOneCat2","preview":"https://i0.hdslb.com/bfs/garb/item/af6ab166af22ed45d429bfde4e3962bb78f270c8.png","ver":1632051567,"package_url":"https://i0.hdslb.com/bfs/garb/zip/4f047ea64e0659dcbcf70092dd6e30c1eadb9390.zip","package_md5":"0f81680da60b12d0ca9ebe869b81e1b1","data":{"color_mode":"dark","color":"#ffffff","color_second_page":"#32376b","side_bg_color":"#32376b","tail_color":"#e9e9e9","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","pub_btn_shade_color_top":"","pub_btn_shade_color_bottom":"","pub_btn_plus_color":"","tail_icon_mode":"img"}},
 					{"id":34813,"name":"嘉然个性装扮2.0","preview":"https://i0.hdslb.com/bfs/garb/item/4d280c3ac38059c7c528a629b7e043a90bf5ff91.jpg","ver":1655707875,"package_url":"https://i0.hdslb.com/bfs/garb/zip/6349c29877c87ffb6967a13e01c17a237380197d.zip","package_md5":"80fbc07a421a3dd885b9ec7cf6884f66","data":{"side_bg_color":"","pub_btn_shade_color_top":"","color_mode":"dark","color_second_page":"#9cbcf5","tail_color_selected":"#526fff","color":"#ffffff","tail_color":"#2648a8","pub_btn_shade_color_bottom":"","head_myself_mp4_play":"loop","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
-					{"id":38888,"name":"明前奶绿","preview":"https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png","ver":1665653355,"package_url":"https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip","package_md5":"c4447d117a321a423eca64d05700198a","properties":{"sale_type":"pay","product_id":"38888","is_old_topic":"1"},"data":{"color_mode":"light","color":"#212121","color_second_page":"#eaf0c8","tail_color":"#744a25","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":"#eaf0c8"}}
+					{"id":34814,"name":"嘉然个性装扮2.0","preview":"https://i0.hdslb.com/bfs/garb/item/c45dd226c6eeee0dc43307995efb0b1529321e0a.jpg","ver":1655707892,"package_url":"https://i0.hdslb.com/bfs/garb/zip/14d71e4f8fda27e52a3aec6a93b358b5686cbada.zip","package_md5":"3522719bc452ad2b0c4562dd8611734a","data":{"side_bg_color":"","pub_btn_shade_color_top":"","color_mode":"light","color_second_page":"#fec9dd","tail_color_selected":"#fb7f9d","color":"#212121","tail_color":"#b93668","pub_btn_shade_color_bottom":"","head_myself_mp4_play":"loop","tail_icon_ani":false,"tail_icon_mode":"img","pub_btn_plus_color":""}},
+					{"id":38888,"name":"明前奶绿","preview":"https://i0.hdslb.com/bfs/garb/item/570d394dcc04c1de441731f703b51efe28839d35.png","ver":1665653355,"package_url":"https://i0.hdslb.com/bfs/garb/zip/ee3e6b065af620e5f3bd6bf3f18cc45483c65ed2.zip","package_md5":"c4447d117a321a423eca64d05700198a","properties":{"sale_type":"pay","product_id":"38888","is_old_topic":"1"},"data":{"color_mode":"light","color":"#212121","color_second_page":"#eaf0c8","tail_color":"#744a25","tail_icon_ani":true,"tail_icon_ani_mode":"once","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":"#eaf0c8"}},
+					{"id":1700450744001,"name":"Akie秋绘璀璨星辰","preview":"https://i0.hdslb.com/bfs/garb/f8b5caf5c74cc4cc2994a2d7a2aee16a5d4b79a7.png","ver":"1700538601","package_url":"https://i0.hdslb.com/bfs/garb/zip/9c5e97dd10798ccab3d0c12f594fbc967a64a780.zip","package_md5":"25dbcbd37329241f16819b193dd05045","data":{"color_mode":"dark","color":"#ffffff","color_second_page":"#08172C","tail_color":"#FFA46A","tail_color_selected":"#FFE7B5","tail_icon_ani":"","tail_icon_ani_mode":"","head_myself_mp4_play":"loop","tail_icon_mode":"img","side_bg_color":""}}
 				],
 				"load_equip":
 				[
-					{"id":1700450116001,"name":"Akie秋绘璀璨星辰","ver":"1700650920","loading_url":"https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp","drag_left_png":"https://i0.hdslb.com/bfs/garb/5c852f7e58d79aab2036323d59f3a60781fc4521.png","drag_right_png":"https://i0.hdslb.com/bfs/garb/4d37eec3b529dcb282c3991a14b9f9515a775002.png","middle_png":"https://i0.hdslb.com/bfs/garb/2a8729316a0500e9a328fed91dbc06e01c7eae43.png","squared_image":"https://i0.hdslb.com/bfs/baselabs/op/17162f95e83547f1286c0cf67856290d044c6949e10cfc56272f702581d597a6.png","static_icon_image":"https://i0.hdslb.com/bfs/garb/38e89a6bd7f017dffccbfda1ba0f0c5d2678ea2e.png"}
+					{"id":32263,"name":"EveOneCat2","ver":1632051568,"loading_url":"https://i0.hdslb.com/bfs/garb/item/840d04b68407dc06275817c767425f18731332a6.bin"},
+					{"id":34811,"name":"嘉然个性装扮2.0","ver":1655707892,"loading_url":"https://i0.hdslb.com/bfs/garb/item/0e6c21e646271a2510257e10df32002714296b44.bin"},
+					{"id":1700450116001,"name":"Akie秋绘璀璨星辰","ver":"1700650920","loading_url":"https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp"}
 				]
 			}
 		}
@@ -103,11 +105,10 @@ const DataBase = {
 											return e;
 										}
 									});
-									// 融合逻辑：如果选择了加载动画，就发送那个包含播放图标的“融合怪”数据包
 									if (Settings.Skin.load_equip) {
 										data.load_equip = Configs.Skin.load_equip.find(e => {
 											if (String(Settings.Skin.load_equip) === String(e.id)) {
-												$.log("✅ 切换加载动画(含PlayIcon)为: "+ e.name);
+												$.log("✅ 切换加载动画为: "+ e.name);
 												return e;
 											}
 										});
