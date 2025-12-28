@@ -1,3 +1,11 @@
+/**
+ * 👘 BiliBili ModifiedCustom Maintenance Protocol
+ * * 维护原则 (白名单模式):
+ * 1. 字段清洗: 仅提取 user_equip (必选) 和 load_equip (可选) 字段。
+ * 2. 动态录入: 仅在源数据明确包含 load_equip 时录入，保持数据原始状态。
+ * 3. 选项映射: BoxJs 选项列表需与脚本内的有效资源 ID 严格对应。
+ */
+
 const $ = new Env("📺 BiliBili: 👘 ModifiedCustom response");
 const URL = new URLs();
 const DataBase = {
