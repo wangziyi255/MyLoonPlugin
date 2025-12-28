@@ -1,14 +1,13 @@
 const $ = new Env("📺 BiliBili: 👘 Modified Custom response");
 const URL = new URLs();
-// 数据直接内嵌，确保稳定
+// 数据内嵌，含融合版 Akie
 const DataBase = {
 	"ModifiedCustom":{
 		"Settings":{
 			"Switch":true,
 			"Skin":{
 				"user_equip":1700450744001,
-				"load_equip":1700450116001,
-				"play_icon":1700452467001
+				"load_equip":1700450116001
 			},
 			"Private":{
 				"coin":"", "bcoin":"", "follower":"", "level":"", "like":"", "vip":false
@@ -24,11 +23,7 @@ const DataBase = {
 				],
 				"load_equip":
 				[
-					{"id":1700450116001,"name":"Akie秋绘璀璨星辰","ver":"1700650920","loading_url":"https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp"}
-				],
-				"play_icon":
-				[
-					{"id":1700452467001,"name":"Akie秋绘璀璨星辰","drag_left_png":"https://i0.hdslb.com/bfs/garb/5c852f7e58d79aab2036323d59f3a60781fc4521.png","drag_right_png":"https://i0.hdslb.com/bfs/garb/4d37eec3b529dcb282c3991a14b9f9515a775002.png","middle_png":"https://i0.hdslb.com/bfs/garb/2a8729316a0500e9a328fed91dbc06e01c7eae43.png","squared_image":"https://i0.hdslb.com/bfs/baselabs/op/17162f95e83547f1286c0cf67856290d044c6949e10cfc56272f702581d597a6.png","static_icon_image":"https://i0.hdslb.com/bfs/garb/38e89a6bd7f017dffccbfda1ba0f0c5d2678ea2e.png","ver":"1700650920"}
+					{"id":1700450116001,"name":"Akie秋绘璀璨星辰","ver":"1700650920","loading_url":"https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp","drag_left_png":"https://i0.hdslb.com/bfs/garb/5c852f7e58d79aab2036323d59f3a60781fc4521.png","drag_right_png":"https://i0.hdslb.com/bfs/garb/4d37eec3b529dcb282c3991a14b9f9515a775002.png","middle_png":"https://i0.hdslb.com/bfs/garb/2a8729316a0500e9a328fed91dbc06e01c7eae43.png","squared_image":"https://i0.hdslb.com/bfs/baselabs/op/17162f95e83547f1286c0cf67856290d044c6949e10cfc56272f702581d597a6.png","static_icon_image":"https://i0.hdslb.com/bfs/garb/38e89a6bd7f017dffccbfda1ba0f0c5d2678ea2e.png"}
 				]
 			}
 		}
@@ -41,13 +36,10 @@ const DataBase = {
 (async () => {
 	const { Settings, Caches, Configs } = setENV("BiliBili", "ModifiedCustom", DataBase);
 	
-	// 强制读取 BoxJs 设置，防止 key 变动导致失效
 	const userSkinId = $.getval("@BiliBili.ModifiedCustom.Settings.Skin.user_equip");
 	if (userSkinId) Settings.Skin.user_equip = userSkinId;
 	const loadEquipId = $.getval("@BiliBili.ModifiedCustom.Settings.Skin.load_equip");
 	if (loadEquipId) Settings.Skin.load_equip = loadEquipId;
-	const playIconId = $.getval("@BiliBili.ModifiedCustom.Settings.Skin.play_icon");
-	if (playIconId) Settings.Skin.play_icon = playIconId;
 
 	$.log(`⚠ ${$.name}`, `Settings.Switch: ${Settings?.Switch}`, "");
 	
@@ -89,7 +81,6 @@ const DataBase = {
 											avatar_subscript: 1, nickname_color: "#FB7299", role: 3, avatar_subscript_url: "", tv_vip_status: 1, tv_vip_pay_type: 0
 										}
 									}
-									// 皮肤注入
 									const mySkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
 									if (mySkin) data.user_equip = mySkin;
 									body.data = data;
@@ -101,33 +92,22 @@ const DataBase = {
 										delete data.vip_section_v2; delete data.vip_section;
 										data.vip = { status: 1, avatar_subscript: 1, nickname_color: "#FB7299", due_date: 4102329600000, role: 3, vip_pay_type: 0, avatar_subscript_url: "", label: { bg_color: "#FB7299", bg_style: 1, text: "年度大会员", border_color: "", path: "", image: "https://i0.hdslb.com/bfs/vip/8d7e624d13d3e134251e4174a7318c19a8edbd71.png", label_theme: "hundred_annual_vip", text_color: "#FFFFFF" }, type: 2, themeType: 0, theme_type: 0 };
 									}
-									// 皮肤注入
 									const mineSkin = Configs.Skin.user_equip.find(e => String(e.id) === String(Settings.Skin.user_equip));
 									if (mineSkin) data.user_equip = mineSkin;
 									body.data = data;
 									break;
 								case "x/resource/show/skin":
-									// 1. 皮肤 (User Equip)
 									data.user_equip = Configs.Skin.user_equip.find(e => {
 										if (String(Settings.Skin.user_equip) === String(e.id)) {
 											$.log("✅ 切换皮肤为: "+ e.name);
 											return e;
 										}
 									});
-									// 2. 加载动画 (Load Equip) - 恢复
+									// 融合逻辑：如果选择了加载动画，就发送那个包含播放图标的“融合怪”数据包
 									if (Settings.Skin.load_equip) {
 										data.load_equip = Configs.Skin.load_equip.find(e => {
 											if (String(Settings.Skin.load_equip) === String(e.id)) {
-												$.log("✅ 切换加载动画为: "+ e.name);
-												return e;
-											}
-										});
-									}
-									// 3. 播放图标 (Play Icon) - 猜测补丁
-									if (Settings.Skin.play_icon) {
-										data.play_icon = Configs.Skin.play_icon.find(e => {
-											if (String(Settings.Skin.play_icon) === String(e.id)) {
-												$.log("✅ 切换播放图标为: "+ e.name);
+												$.log("✅ 切换加载动画(含PlayIcon)为: "+ e.name);
 												return e;
 											}
 										});
