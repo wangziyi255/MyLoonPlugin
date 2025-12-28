@@ -18,7 +18,7 @@
 			],
 			"descs_html":
 			[
-				"依次选择皮肤、加载动画、播放图标等",
+				"依次选择皮肤、加载动画等",
 				"选择完成后记得点击此页面底端右下角的\"保存\"。"
 			],
 			"keys":
@@ -41,7 +41,7 @@
 					"name": "皮肤选择 (User Equip)",
 					"val":
 					[
-						"1700450744001"
+						"32264"
 					],
 					"type": "radios",
 					"items":
@@ -80,23 +80,7 @@
 					[
 						{
 							"key": "1700450116001",
-							"label": "Akie秋绘璀璨星辰"
-						}
-					]
-				},
-				{
-					"id": "@BiliBili.ModifiedCustom.Settings.Skin.play_icon",
-					"name": "播放图标 (Play Icon)",
-					"val":
-					[
-						"1700452467001"
-					],
-					"type": "radios",
-					"items":
-					[
-						{
-							"key": "1700452467001",
-							"label": "Akie秋绘璀璨星辰"
+							"label": "Akie秋绘璀璨星辰 (含PlayIcon)"
 						}
 					]
 				},
