@@ -7,8 +7,7 @@
 			"Skin":
 			{
 				"user_equip": 1700450744001,
-				"load_equip": 1700450116001,
-				"play_icon": 1700452467001
+				"load_equip": 1700450116001
 			},
 			"Private":{
 				"coin":"", "bcoin":"", "follower":"", "level":"", "like":"", "vip":false
@@ -39,20 +38,12 @@
 						"id": 1700450116001,
 						"name": "Akie秋绘璀璨星辰",
 						"ver": "1700650920",
-						"loading_url": "https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp"
-					}
-				],
-				"play_icon":
-				[
-					{
-						"id": 1700452467001,
-						"name": "Akie秋绘璀璨星辰",
+						"loading_url": "https://i0.hdslb.com/bfs/baselabs/op/ede2996d36d15287866570b31b95b840fc6b1877a139d10b5cfee0004f533bca.webp",
 						"drag_left_png": "https://i0.hdslb.com/bfs/garb/5c852f7e58d79aab2036323d59f3a60781fc4521.png",
 						"drag_right_png": "https://i0.hdslb.com/bfs/garb/4d37eec3b529dcb282c3991a14b9f9515a775002.png",
 						"middle_png": "https://i0.hdslb.com/bfs/garb/2a8729316a0500e9a328fed91dbc06e01c7eae43.png",
 						"squared_image": "https://i0.hdslb.com/bfs/baselabs/op/17162f95e83547f1286c0cf67856290d044c6949e10cfc56272f702581d597a6.png",
-						"static_icon_image": "https://i0.hdslb.com/bfs/garb/38e89a6bd7f017dffccbfda1ba0f0c5d2678ea2e.png",
-						"ver": "1700650920"
+						"static_icon_image": "https://i0.hdslb.com/bfs/garb/38e89a6bd7f017dffccbfda1ba0f0c5d2678ea2e.png"
 					}
 				]
 			}
