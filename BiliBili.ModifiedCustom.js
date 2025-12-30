@@ -49,7 +49,8 @@ const DataBase = {
 					{"id":1753351039001,"name":"東雪莲加载动画","ver":1753524002,"loading_url":"https://i0.hdslb.com/bfs/baselabs/op/6b6cfcb5244ded44c160d1a03f9f1303fab371fa54595bf7f01d692df4311561.webp"},
 					{"id":1716450459001,"name":"幻境序曲白昼加载","ver":1716530400,"loading_url":"https://i0.hdslb.com/bfs/baselabs/op/5dcc21236ed8ddbe69d04fc6be2bf4588fee48e043201ee18fedeac9816d7c3f.webp"},
 					{"id":1734315264001,"name":"墨盘加载动画","ver":1734321600,"loading_url":"https://i0.hdslb.com/bfs/baselabs/op/0f865c2da847567fef31a2a8cb546404c7bbf67c49fa38ba4edae58bd3adabc3.webp"},
-					{"id":71339,"name":"群星闪耀时·英雄加载","ver":1746609524,"loading_url":"https://i0.hdslb.com/bfs/garb/item/da4036f04524388282c93cc8365fef0b3241eda3.webp"}
+					{"id":71339,"name":"群星闪耀时·英雄加载","ver":1746609524,"loading_url":"https://i0.hdslb.com/bfs/garb/item/da4036f04524388282c93cc8365fef0b3241eda3.webp"},
+					{"id":71411,"name":"群星闪耀时·命轮特典","ver":1746690014,"loading_url":"https://i0.hdslb.com/bfs/garb/item/a94a61e858720bfb23367d616a181caf5f79f11b.webp"}
 				]
 			}
 		}
