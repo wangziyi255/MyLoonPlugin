@@ -6,4 +6,4 @@
 #!date=2025-12-17
 
 [Script]
-generic script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/IPTextCustomVersion.js, timeout=15, tag=节点质量查询,img-url=globe.asia.australia.system
+generic script-path=https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/IPTestCustomVersion.js, timeout=15, tag=节点质量查询,img-url=globe.asia.australia.system
