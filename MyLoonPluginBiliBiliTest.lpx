@@ -24,6 +24,8 @@ DOMAIN,app.biliapi.com,REJECT
 DOMAIN,api.biliapi.net,REJECT
 DOMAIN,app.biliapi.net,REJECT
 AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWORD,tracker),(DOMAIN-KEYWORD,p2p)))),REJECT
+URL-REGEX,"^http:\/\/upos-sz-static\.bilivideo\.com\/ssaxcode\/\w{2}\/\w{2}\/\w{32}-1-SPLASH",REJECT-VIDEO-NO-DROP
+URL-REGEX,"^http:\/\/[\d\.]+:8000\/v1\/resource\/\w{32}-1-SPLASH",REJECT-VIDEO-NO-DROP
 
 [Rewrite]
 ^https:\/\/api\.bilibili\.com\/x\/pd-proxy\/tracker\? response-body-json-jq '.data[][]?="stun.chat.bilibili.com:3478"'
@@ -37,6 +39,8 @@ AND,((DOMAIN-SUFFIX,chat.bilibili.com),(OR,((DOMAIN-KEYWORD,stun),(DOMAIN-KEYWOR
 # ^https:\/\/app\.bilibili\.com\/x\/resource\/show\/skin\? response-body-json-del data.common_equip
 ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/mine(\/ipad)?\? response-body-json-jq jq-path="https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.Mine.Test.jq"
 ^https:\/\/app\.bilibili\.com\/x\/v2\/account\/myinfo\? response-body-json-jq '.data.vip |= if . != null and .status == 0 then . + { status: 1, type: 2, due_date: 9005270400000, role: 15 } else . end'
+^https:\/\/api\.bilibili\.com\/x\/mengqi\/v1\/resource - reject-dict
+^https:\/\/app\.bilibili\.com\/x\/resource\/peak\/download - reject-dict
 ^https:\/\/line3-h5-mobile-api\.biligame\.com\/game\/live\/large_card_material\? - reject-dict
 ^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\? - reject-dict
 ^https:\/\/grpc\.biliapi\.net\/bilibili\.app\.(interface\.v1\.(Teenagers\/ModeStatus|Search\/DefaultWords)|view\.v1\.View\/TFInfo|viewunite\.v1\.View\/(PlayPause|ViewEndPage))$ response-header-add 'grpc-status' '0'
