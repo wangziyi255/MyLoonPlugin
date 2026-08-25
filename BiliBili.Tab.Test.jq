@@ -1,6 +1,13 @@
 .data.tab = [
     {
         pos: 1,
+        id: 39,
+        name: "直播",
+        tab_id: "直播tab",
+        uri: "bilibili://live/home"
+    },
+    {
+        pos: 2,
         id: 40,
         name: "推荐",
         tab_id: "推荐tab",
@@ -8,7 +15,7 @@
         default_selected: 1
     },
     {
-        pos: 2,
+        pos: 3,
         id: 41,
         name: "热门",
         tab_id: "hottopic",
