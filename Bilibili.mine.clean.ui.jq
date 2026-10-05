@@ -1,14 +1,14 @@
 .data |= (
-    del(.answer, .live_tip, .vip_section, .vip_section_v2, .modular_vip_section) | 
-    .vip_type = 2 | 
+    del(.answer, .live_tip, .vip_section, .vip_section_v2, .modular_vip_section) | 
+    .vip_type = 2 | 
     .vip |= if . != null and .status == 0
-        then . + { 
-            status: 1, 
-            type: 2, 
-            due_date: 9005270400000, 
-            role: 15, 
-            vip_type: 2, 
-            vip_pay_type: 1, 
+        then . + { 
+            status: 1, 
+            type: 2, 
+            due_date: 9005270400000, 
+            role: 15, 
+            vip_type: 2, 
+            vip_pay_type: 1, 
             label: {
                 bg_color: "#FB7299",
                 border_color: "",
@@ -18,12 +18,12 @@
                 image: "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
                 label_theme: "annual_vip",
                 text_color: "#FFFFFF"
-            }, 
-            nickname_color: "#FB7299" 
-        } 
-        else . 
-    end | 
-    if .sections_v2 then .sections_v2 = 
+            }, 
+            nickname_color: "#FB7299" 
+        } 
+        else . 
+    end | 
+    if .sections_v2 then .sections_v2 = 
         [
             {
                 "items": [
@@ -61,6 +61,41 @@
                 "button": {}
             },
             {
+                "title": "推荐服务",
+                "items": [
+                    {
+                        "id": 402,
+                        "title": "个性装扮",
+                        "uri": "https://www.bilibili.com/h5/mall/home?navhide=1&f_source=shop&from=myservice",
+                        "icon": "http://i0.hdslb.com/bfs/archive/0bcad10661b50f583969b5a188c12e5f0731628c.png",
+                        "common_op_item": {}
+                    },
+                    {
+                        "id": 622,
+                        "title": "会员购",
+                        "uri": "bilibili://mall/home",
+                        "icon": "http://i0.hdslb.com/bfs/archive/19c794f01def1a267b894be84427d6a8f67081a9.png",
+                        "common_op_item": {}
+                    },
+                    {
+                        "id": 404,
+                        "title": "我的钱包",
+                        "uri": "bilibili://bilipay/mine_wallet",
+                        "icon": "http://i0.hdslb.com/bfs/archive/f416634e361824e74a855332b6ff14e2e7c2e082.png",
+                        "common_op_item": {}
+                    },
+                    {
+                        "id": 406,
+                        "title": "我的直播",
+                        "uri": "bilibili://user_center/live_center",
+                        "icon": "http://i0.hdslb.com/bfs/archive/1db5791746a0112890b77a0236baf263d71ecb27.png",
+                        "common_op_item": {},
+                    }
+                ],
+                "style": 1,
+                "button": {}
+            },
+            {
                 "title": "更多服务",
                 "items": [
                     {
@@ -82,8 +117,8 @@
                 "button": {}
             }
         ]
-    end | 
-    if .ipad_sections then .ipad_sections = 
+    end | 
+    if .ipad_sections then .ipad_sections = 
         [
             {
                 "id": 747,
@@ -113,9 +148,9 @@
                 "icon": "http://i0.hdslb.com/bfs/feed-admin/928ba9f559b02129e51993efc8afe95014edec94.png",
                 "mng_resource": { "icon_id": 0, "icon": "" }
             }
-        ] 
-    end | 
-    if .ipad_upper_sections then .ipad_upper_sections = 
+        ] 
+    end | 
+    if .ipad_upper_sections then .ipad_upper_sections = 
         [
             {
                 "id": 752,
@@ -124,9 +159,9 @@
                 "icon": "http://i0.hdslb.com/bfs/feed-admin/d20dfed3b403c895506b1c92ecd5874abb700c01.png",
                 "mng_resource": { "icon_id": 0, "icon": "" }
             }
-        ] 
-    end | 
-    if .ipad_recommend_sections then .ipad_recommend_sections = 
+        ] 
+    end | 
+    if .ipad_recommend_sections then .ipad_recommend_sections = 
         [
             {
                 "id": 755,
@@ -142,9 +177,9 @@
                 "icon": "http://i0.hdslb.com/bfs/feed-admin/e1471740130a08a48b02a4ab29ed9d5f2281e3bf.png",
                 "mng_resource": { "icon_id": 0, "icon": "" }
             }
-        ] 
-    end | 
-    if .ipad_more_sections then .ipad_more_sections = 
+        ] 
+    end | 
+    if .ipad_more_sections then .ipad_more_sections = 
         [
             {
                 "id": 763,
@@ -160,6 +195,6 @@
                 "icon": "http://i0.hdslb.com/bfs/feed-admin/34e8faea00b3dd78977266b58d77398b0ac9410b.png",
                 "mng_resource": { "icon_id": 0, "icon": "" }
             }
-        ] 
+        ] 
     end
 )
