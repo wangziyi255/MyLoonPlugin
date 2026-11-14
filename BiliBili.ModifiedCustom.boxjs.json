@@ -1,0 +1,216 @@
+{
+	"id": "BiliBili.ModifiedCustom.sub",
+	"name": "BiliBili: 👘 Modified Custom",
+	"author": "@MartinsKing",
+	"description": "BiliBili 皮肤修改 (定制版)",
+	"icon": "https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
+	"apps":
+	[
+		{
+			"id": "BiliBili.ModifiedCustom.Settings",
+			"name": "📺 BiliBili: 👘 Modified Custom",
+			"author": "@MartinsKing",
+			"script": "https://raw.githubusercontent.com/wangziyi255/MyLoonPlugin/main/BiliBili.ModifiedCustom.js",
+			"icons":
+			[
+				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png",
+				"https://raw.githubusercontent.com/ClydeTime/BiliBili/main/database/icon_Avatar.png"
+			],
+			"descs_html":
+			[
+				"依次选择皮肤、加载动画等",
+				"选择完成后记得点击此页面底端右下角的\"保存\"。"
+			],
+			"keys":
+			[
+				"@BiliBili.ModifiedCustom.Settings.Switch",
+				"@BiliBili.ModifiedCustom.Settings.Skin",
+				"@BiliBili.ModifiedCustom.Settings.Private"
+			],
+			"settings":
+			[
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Switch",
+					"name": "总功能开关",
+					"val": true,
+					"type": "boolean",
+					"desc": "是否启用修改"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.user_equip",
+					"name": "皮肤选择 (User Equip)",
+					"val":
+					[
+						"32264"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "32264",
+							"label": "EveOneCat2"
+						},
+						{
+							"key": "34813",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "34814",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "38888",
+							"label": "明前奶绿"
+						},
+						{
+							"key": "1700450744001",
+							"label": "Akie秋绘璀璨星辰"
+						},
+						{
+							"key": "32324",
+							"label": "星座特典1"
+						},
+						{
+							"key": "32325",
+							"label": "星座特典2"
+						},
+						{
+							"key": "1753352262001",
+							"label": "東雪莲个性主题"
+						},
+						{
+							"key": "1707389079001",
+							"label": "東雪蓮·烟火星辰"
+						},
+						{
+							"key": "46771",
+							"label": "兔年吉祥東雪蓮"
+						},
+						{
+							"key": "37822",
+							"label": "東雪蓮"
+						},
+						{
+							"key": "1716453643001",
+							"label": "幻境序曲白昼主题"
+						},
+						{
+							"key": "1734315082001",
+							"label": "墨盘动态主题"
+						},
+						{
+							"key": "71410",
+							"label": "命轮特典1"
+						},
+						{
+							"key": "71445",
+							"label": "命轮特典2"
+						},
+						{
+							"key": "71338",
+							"label": "群星闪耀时·英雄"
+						},
+						{
+							"key": "71367",
+							"label": "群星闪耀时·众神1"
+						},
+						{
+							"key": "71371",
+							"label": "群星闪耀时·众神2"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Skin.load_equip",
+					"name": "加载动画 (Load Equip)",
+					"val":
+					[
+						"0"
+					],
+					"type": "radios",
+					"items":
+					[
+						{
+							"key": "0",
+							"label": "默认"
+						},
+						{
+							"key": "32263",
+							"label": "EveOneCat2"
+						},
+						{
+							"key": "34811",
+							"label": "嘉然个性装扮2.0"
+						},
+						{
+							"key": "1700450116001",
+							"label": "Akie秋绘璀璨星辰"
+						},
+						{
+							"key": "1753351039001",
+							"label": "東雪莲加载动画"
+						},
+						{
+							"key": "1716450459001",
+							"label": "幻境序曲白昼加载"
+						},
+						{
+							"key": "1734315264001",
+							"label": "墨盘加载动画"
+						},
+						{
+							"key": "71339",
+							"label": "群星闪耀时·英雄加载"
+						},
+						{
+							"key": "71372",
+							"label": "群星闪耀时·众神特典"
+						}
+					]
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.vip",
+					"name": "大会员伪装",
+					"val": false,
+					"type": "boolean",
+					"desc": "是否更改为大会员状态（自慰）"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.coin",
+					"name": "硬币数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.bcoin",
+					"name": "B币数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.follower",
+					"name": "粉丝数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.level",
+					"name": "用户等级",
+					"val": "",
+					"type": "text",
+					"desc": "小于等于6"
+				},
+				{
+					"id": "@BiliBili.ModifiedCustom.Settings.Private.like",
+					"name": "被赞次数",
+					"val": "",
+					"type": "text",
+					"desc": ""
+				}
+			]
+		}
+	]
+}
